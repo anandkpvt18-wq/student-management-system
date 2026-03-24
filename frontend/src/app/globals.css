@@ -101,16 +101,17 @@ h1 {
 }
 
 .btn-secondary {
-  background: var(--card-bg);
+  background: #f97316; /* Orange 500 */
   color: white;
-  border: 1px solid var(--glass-border);
-  backdrop-filter: blur(10px);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.2);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: #ea580c; /* Orange 600 */
+  border-color: rgba(249, 115, 22, 0.4);
   transform: translateY(-2px);
+  box-shadow: 0 20px 25px -5px rgba(249, 115, 22, 0.3);
 }
 
 @media (max-width: 640px) {

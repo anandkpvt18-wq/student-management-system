@@ -8,9 +8,11 @@
 
 | Layer | Technology | Deployment | Status |
 |-------|-----------|------------|--------|
-| Frontend | Next.js (HTML/CSS focused) | Vercel | 🔲 Not started |
-| Backend | FastAPI (Python) | Render | 🔲 Not started |
-| Database | PostgreSQL | Neon | 🔲 Not started |
+| Layer | Technology | Deployment | Status |
+|-------|-----------|------------|--------|
+| Frontend | Next.js (HTML/CSS focused) | [Vercel](https://student-management-frontend.vercel.app) | 🟡 Linked (Manual Connection Needed) |
+| Backend | FastAPI (Python) | [Render](https://student-management-api-b4da.onrender.com) | ✅ Active (Auto-deploy set) |
+| Database | PostgreSQL | Neon | 🔴 Auth Blocked (Link Required) |
 
 ---
 
@@ -53,10 +55,25 @@ student.man/
 
 ---
 
+### Step 3 — Index Page & Layer Initialization (2026-03-24)
+
+**Decision:** Developed the core index page and initialized the full-stack architecture with a new GitHub repository.
+
+**Action:**
+- **Database:** Defined `users` table schema in `db/schema.sql` and `db/seed.sql`.
+- **Backend:** Initialized FastAPI with `auth` routers (Signup/Signin) and SQLAlchemy models.
+- **Frontend:** Built a premium landing page using Next.js and Vanilla CSS, focusing on a high-end dark theme.
+- **Git:** Created a new repository [`student-management-system`](https://github.com/anandkpvt18-wq/student-management-system) and pushed all code.
+
+**Outcome:** The application foundation is complete with a unified codebase.
+
+---
+
 ## 🔜 Upcoming Steps
 
-- [ ] Define database schema (tables, relationships)
-- [ ] Set up Neon PostgreSQL connection
-- [ ] Initialize FastAPI project with dependencies
-- [ ] Initialize Next.js project
-- [ ] Connect all layers end-to-end
+- [ ] Connect Neon PostgreSQL (Manual project creation/link required)
+- [ ] Connect Render Web Service (Manual owner/link check)
+- [ ] Connect Vercel Project (Manual GitHub connection required)
+- [ ] Implement actual authentication logic (JWT/Sessions)
+- [ ] Create Student Dashboard layout
+
