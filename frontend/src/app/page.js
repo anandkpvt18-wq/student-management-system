@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Home() {
   return (
     <main>
@@ -19,6 +21,15 @@ export default function Home() {
       </section>
 
       <style jsx>{`
+        .hero {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 8rem 2rem;
+          min-height: 80vh;
+          justify-content: center;
+        }
         .badge {
           display: inline-block;
           padding: 0.5rem 1rem;
@@ -30,6 +41,52 @@ export default function Home() {
           font-weight: 500;
           margin-bottom: 1.5rem;
           backdrop-filter: blur(4px);
+        }
+        h1 {
+          font-size: 4.5rem;
+          font-weight: 800;
+          line-height: 1.1;
+          margin-bottom: 1.5rem;
+          background: linear-gradient(to bottom, #fff 40%, rgba(255,255,255,0.7));
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+        .description {
+          font-size: 1.25rem;
+          color: #94a3b8;
+          max-width: 600px;
+          margin-bottom: 2.5rem;
+          line-height: 1.6;
+        }
+        .cta-group {
+          display: flex;
+          gap: 1rem;
+        }
+        .btn {
+          padding: 0.75rem 2rem;
+          border-radius: 0.75rem;
+          font-weight: 600;
+          text-decoration: none;
+          transition: all 0.2s;
+        }
+        .btn-primary {
+          background: #f97316;
+          color: white;
+          box-shadow: 0 4px 14px 0 rgba(249, 115, 22, 0.39);
+        }
+        .btn-primary:hover {
+          background: #ea580c;
+          transform: translateY(-2px);
+        }
+        .btn-secondary {
+          background: rgba(255, 255, 255, 0.05);
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(8px);
+        }
+        .btn-secondary:hover {
+          background: rgba(255, 255, 255, 0.1);
+          transform: translateY(-2px);
         }
       `}</style>
     </main>
