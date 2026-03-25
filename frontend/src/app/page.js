@@ -9,12 +9,12 @@ export default function Home() {
           track progress, and empower educators and students alike.
         </p>
         <div className="cta-group">
-          <a href="/auth/signin" className="btn btn-secondary">
+          <Link href="/auth/signin" className="btn btn-secondary">
             Sign In
-          </a>
-          <a href="/auth/signup" className="btn btn-primary">
+          </Link>
+          <Link href="/auth/signup" className="btn btn-primary">
             Get Started Free
-          </a>
+          </Link>
         </div>
       </section>
 
