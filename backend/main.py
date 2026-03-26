@@ -51,10 +51,10 @@ from fastapi.responses import JSONResponse
 @app.exception_handler(Exception)
 async def global_exception_handler(request, exc):
     print(f"GLOBAL ERROR: {exc}")
-    # Still include CORS headers even on error!
+    # Put the actual error in 'detail' for easier frontend display
     return JSONResponse(
         status_code=500,
-        content={"detail": "Internal Server Error", "message": str(exc)},
+        content={"detail": f"Server Error: {str(exc)}", "message": str(exc)},
         headers={
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "*",

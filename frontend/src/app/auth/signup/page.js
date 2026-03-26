@@ -35,7 +35,7 @@ export default function SignUp() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.detail || 'Registration failed');
+        setError(data.message || data.detail || 'Registration failed');
       } else {
         // Store user info and redirect to dashboard
         localStorage.setItem('user', JSON.stringify({
