@@ -20,6 +20,13 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="Student Management API", lifespan=lifespan)
 
+@app.middleware("http")
+async def log_requests(request, call_next):
+    print(f"Incoming request: {request.method} {request.url.path}")
+    response = await call_next(request)
+    print(f"Outgoing response status: {response.status_code}")
+    return response
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
