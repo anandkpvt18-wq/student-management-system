@@ -37,11 +37,16 @@ export default function SignUp() {
       if (!res.ok) {
         setError(data.detail || 'Registration failed');
       } else {
-        setSuccess('Account created successfully! You can now sign in.');
-        setFullName('');
-        setEmail('');
-        setPassword('');
-        setRole('student');
+        // Store user info and redirect to dashboard
+        localStorage.setItem('user', JSON.stringify({
+          email: data.email,
+          full_name: data.full_name,
+          role: data.role
+        }));
+        setSuccess('Account created successfully! Redirecting...');
+        setTimeout(() => {
+          window.location.href = '/dashboard';
+        }, 1500);
       }
     } catch (err) {
       setError('Unable to connect to server. Please try again.');

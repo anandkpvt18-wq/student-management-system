@@ -52,7 +52,11 @@ export default function Dashboard() {
 
         <div className="dashboard-welcome">
           <h1 className="auth-title">Welcome, {user.full_name}!</h1>
-          <p className="auth-subtitle">Here&apos;s your dashboard overview</p>
+          <p className="auth-subtitle">
+            {user.role === 'admin' ? 'System Administrator Overview' : 
+             user.role === 'teacher' ? 'Faculty Member Portal' : 
+             'Student Academic Dashboard'}
+          </p>
         </div>
 
         <div className="dashboard-grid">
@@ -76,29 +80,57 @@ export default function Dashboard() {
           </div>
 
           <div className="dash-card">
-            <div className="dash-card-icon">📊</div>
+            <div className="dash-card-icon">
+              {user.role === 'admin' ? '🔒' : user.role === 'teacher' ? '📚' : '📖'}
+            </div>
             <div className="dash-card-content">
-              <h3>Status</h3>
-              <span className="status-indicator">● Active</span>
+              <h3>
+                {user.role === 'admin' ? 'Security' : user.role === 'teacher' ? 'Classes' : 'Courses'}
+              </h3>
+              <p className="dash-card-value">
+                {user.role === 'admin' ? 'System Active' : user.role === 'teacher' ? '4 Active' : '6 Enrolled'}
+              </p>
             </div>
           </div>
 
           <div className="dash-card">
-            <div className="dash-card-icon">📅</div>
+            <div className="dash-card-icon">🔔</div>
             <div className="dash-card-content">
-              <h3>Session</h3>
-              <p className="dash-card-meta">Logged in just now</p>
+              <h3>Notifications</h3>
+              <p className="dash-card-meta">2 New Updates</p>
             </div>
           </div>
         </div>
 
         <div className="dash-card dash-card-wide">
-          <h3>Quick Actions</h3>
+          <h3>
+            {user.role === 'admin' ? 'Administrative Controls' : 
+             user.role === 'teacher' ? 'Classroom Management' : 
+             'Academic Actions'}
+          </h3>
           <div className="quick-actions">
-            <button className="action-btn">📝 View Courses</button>
-            <button className="action-btn">📋 Assignments</button>
-            <button className="action-btn">📈 Grades</button>
-            <button className="action-btn">⚙️ Settings</button>
+            {user.role === 'admin' ? (
+              <>
+                <button className="action-btn">👥 Manage Users</button>
+                <button className="action-btn">🛡️ System Logs</button>
+                <button className="action-btn">⚙️ Settings</button>
+                <button className="action-btn">📊 Reports</button>
+              </>
+            ) : user.role === 'teacher' ? (
+              <>
+                <button className="action-btn">📝 Gradebook</button>
+                <button className="action-btn">📅 Schedule</button>
+                <button className="action-btn">📤 Material</button>
+                <button className="action-btn">💬 Messages</button>
+              </>
+            ) : (
+              <>
+                <button className="action-btn">📚 My Courses</button>
+                <button className="action-btn">📋 Assignments</button>
+                <button className="action-btn">📈 View Grades</button>
+                <button className="action-btn">📜 Transcript</button>
+              </>
+            )}
           </div>
         </div>
       </div>
