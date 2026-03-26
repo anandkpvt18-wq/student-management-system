@@ -13,10 +13,8 @@ async def lifespan(app: FastAPI):
         models.user.Base.metadata.create_all(bind=engine)
         print("Database tables initialized successfully.")
     except Exception as e:
-        print(f"CRITICAL ERROR during database initialization: {e}")
-        # In production, we might want to continue or fail. 
-        # Failing is clearer for debugging startup issues.
-        raise e
+        print(f"WARNING: Database initialization skipped or failed: {e}")
+        print("The app will still start, but database-dependent features will fail.")
     yield
     # Shutdown logic if needed
 
