@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
 from fastapi.middleware.cors import CORSMiddleware
 from routers import auth
 from contextlib import asynccontextmanager
@@ -10,23 +10,34 @@ async def lifespan(app: FastAPI):
     try:
         from database import engine
         import models.user
-        models.user.Base.metadata.create_all(bind=engine)
-        print("Database tables initialized successfully.")
+        if engine:
+            models.user.Base.metadata.create_all(bind=engine)
+            print("Database tables initialized successfully.")
+        else:
+            print("Database initialization skipped: engine is None")
     except Exception as e:
-        print(f"WARNING: Database initialization skipped or failed: {e}")
-        print("The app will still start, but database-dependent features will fail.")
+        print(f"WARNING: Database initialization failed: {e}")
     yield
-    # Shutdown logic if needed
 
 app = FastAPI(title="Student Management API", lifespan=lifespan)
 
 @app.middleware("http")
-async def log_requests(request, call_next):
-    print(f"Incoming request: {request.method} {request.url.path}")
+async def manual_cors_middleware(request, call_next):
+    if request.method == "OPTIONS":
+        response = Response()
+        response.status_code = 200
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
+        response.headers["Access-Control-Allow-Headers"] = "*"
+        return response
+    
     response = await call_next(request)
-    print(f"Outgoing response status: {response.status_code}")
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS, PUT, DELETE"
+    response.headers["Access-Control-Allow-Headers"] = "*"
     return response
 
+# We keep the standard one as well, just in case
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
