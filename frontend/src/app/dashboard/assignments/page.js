@@ -119,17 +119,29 @@ export default function MyAssignments() {
                 <p className="dash-card-meta">{task.description}</p>
                 <div style={{ marginTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem' }}>
                   {submittingId === task.id ? (
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                       <input 
                         type="text" 
-                        placeholder="Paste URL or text..." 
+                        placeholder="Paste URL or type here..." 
                         value={submitUrl}
                         onChange={(e) => setSubmitUrl(e.target.value)}
-                        style={{ flex: 1, padding: '0.5rem', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: 'white' }}
+                        style={{ 
+                          width: '100%', 
+                          padding: '0.8rem', 
+                          borderRadius: '8px', 
+                          border: '1px solid rgba(255,255,255,0.2)', 
+                          background: 'rgba(0,0,0,0.2)', 
+                          color: 'white', 
+                          fontSize: '0.9rem',
+                          outline: 'none',
+                          boxSizing: 'border-box'
+                        }}
                         autoFocus
                       />
-                      <button className="action-btn" onClick={() => handleSubmit(task.id)} style={{ padding: '0.5rem 1rem' }}>Send</button>
-                      <button onClick={() => setSubmittingId(null)} style={{ background: 'transparent', color: '#94a3b8', border: 'none', cursor: 'pointer' }}>Cancel</button>
+                      <div style={{ display: 'flex', gap: '0.5rem' }}>
+                        <button className="action-btn" onClick={() => handleSubmit(task.id)} style={{ flex: 1, justifyContent: 'center' }}>Send</button>
+                        <button className="action-btn" onClick={() => setSubmittingId(null)} style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', color: '#94a3b8', flex: 1, justifyContent: 'center' }}>Cancel</button>
+                      </div>
                     </div>
                   ) : (
                     <button className="action-btn" onClick={() => setSubmittingId(task.id)} style={{ width: '100%', justifyContent: 'center' }}>
