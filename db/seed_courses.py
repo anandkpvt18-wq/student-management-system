@@ -25,8 +25,10 @@ def seed():
         course1 = Course(name="Introduction to Computer Science", description="Basics of programming and algorithms.", teacher_id=1)
         course2 = Course(name="Advanced Web Development", description="Building modern web apps with Next.js and FastAPI.", teacher_id=1)
         course3 = Course(name="Database Management Systems", description="SQL, NoSQL, and data modeling.", teacher_id=1)
+        course4 = Course(name="Business Management 101", description="Learn the fundamentals of organizational leadership and strategy.", teacher_id=1)
+        course5 = Course(name="Digital Marketing Essentials", description="Social media, SEO, and content strategy for the modern web.", teacher_id=1)
         
-        db.add_all([course1, course2, course3])
+        db.add_all([course1, course2, course3, course4, course5])
         db.commit()
         db.refresh(course1)
         db.refresh(course2)
