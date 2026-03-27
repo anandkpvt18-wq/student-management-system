@@ -32,7 +32,7 @@ def enroll_in_course(req: EnrollRequest, db: Session = Depends(get_db)):
     db.refresh(new_enrollment)
     return new_enrollment
 
-@router.get("/my", response_model=DashboardStats)
+@router.get("/my", response_model=UserDashboardData)
 def get_my_dashboard_stats(user_email: str, db: Session = Depends(get_db)):
     # Find user by email
     user = db.query(User).filter(User.email.ilike(user_email)).first()
@@ -60,3 +60,9 @@ def get_my_courses(user_email: str, db: Session = Depends(get_db)):
     courses = db.query(Course).filter(Course.id.in_(course_ids)).all()
     
     return courses
+@router.get("/{course_id}", response_model=CourseResponse)
+def get_course_detail(course_id: int, db: Session = Depends(get_db)):
+    course = db.query(Course).filter(Course.id == course_id).first()
+    if not course:
+        raise HTTPException(status_code=404, detail="Course not found")
+    return course

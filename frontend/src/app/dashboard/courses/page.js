@@ -78,11 +78,11 @@ export default function MyCourses() {
             </div>
           ) : courses.length > 0 ? (
             courses.map(course => (
-              <div key={course.id} className="dash-card">
+              <Link key={course.id} href={`/dashboard/courses/${course.id}`} className="dash-card" style={{ textDecoration: 'none', display: 'block' }}>
                 <div className="dash-card-icon" style={{ background: 'linear-gradient(135deg, #10b981, #3b82f6)' }}>📚</div>
                 <h3>{course.name}</h3>
                 <p className="dash-card-meta">{course.description}</p>
-              </div>
+              </Link>
             ))
           ) : (
             <div className="dash-card dash-card-wide" style={{ textAlign: 'center', padding: '3rem' }}>

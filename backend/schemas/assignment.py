@@ -13,6 +13,7 @@ class AssignmentCreate(AssignmentBase):
 
 class AssignmentResponse(AssignmentBase):
     id: int
+    questions: Optional[List[dict]] = None
     created_at: datetime
 
     class Config:
