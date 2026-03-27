@@ -47,7 +47,18 @@ export default function MyAssignments() {
       <div className="dashboard-container">
         <nav className="dashboard-nav">
           <Link href="/dashboard" className="nav-logo">&larr; Back to Dashboard</Link>
-          <div className="role-badge" style={{ background: '#22c55e' }}>Student</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div className="role-badge" 
+                 style={{ background: '#22c55e', cursor: 'pointer' }}
+                 onClick={() => {
+                   if(confirm('Do you want to sign out?')) {
+                     localStorage.removeItem('user');
+                     router.push('/auth/signin');
+                   }
+                 }}>
+              Student (Sign Out)
+            </div>
+          </div>
         </nav>
 
         <div className="dashboard-welcome" style={{ textAlign: 'left', marginBottom: '3rem' }}>
