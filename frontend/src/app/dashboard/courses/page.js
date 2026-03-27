@@ -69,7 +69,9 @@ export default function MyCourses() {
           ) : (
             <div className="dash-card dash-card-wide" style={{ textAlign: 'center', padding: '3rem' }}>
               <p className="auth-subtitle">You are not enrolled in any courses yet.</p>
-              <button className="btn btn-primary" style={{ marginTop: '1rem' }}>Browse Courses</button>
+              <Link href="/dashboard/courses/browse" className="btn btn-primary" style={{ marginTop: '1rem', display: 'inline-block' }}>
+                Browse Courses
+              </Link>
             </div>
           )}
         </div>

@@ -35,3 +35,7 @@ class UserDashboardData(BaseModel):
     enrolled_courses: int
     active_assignments: int = 0
     notifications: int = 2
+
+class EnrollRequest(BaseModel):
+    course_id: int
+    user_email: str

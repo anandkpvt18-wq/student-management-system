@@ -3,10 +3,34 @@ from sqlalchemy.orm import Session
 from database import get_db
 from models.user import User
 from models.course import Course, Enrollment
-from schemas.course import CourseResponse, EnrollmentResponse, UserDashboardData
+from schemas.course import CourseResponse, EnrollmentResponse, UserDashboardData, EnrollRequest
 from typing import List
 
 router = APIRouter()
+
+@router.get("/all", response_model=List[CourseResponse])
+def get_all_courses(db: Session = Depends(get_db)):
+    return db.query(Course).all()
+
+@router.post("/enroll", response_model=EnrollmentResponse)
+def enroll_in_course(req: EnrollRequest, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == req.user_email).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Check if already enrolled
+    existing = db.query(Enrollment).filter(
+        Enrollment.user_id == user.id,
+        Enrollment.course_id == req.course_id
+    ).first()
+    if existing:
+        raise HTTPException(status_code=400, detail="Already enrolled in this course")
+    
+    new_enrollment = Enrollment(user_id=user.id, course_id=req.course_id)
+    db.add(new_enrollment)
+    db.commit()
+    db.refresh(new_enrollment)
+    return new_enrollment
 
 @router.get("/my", response_model=UserDashboardData)
 def get_my_dashboard_stats(user_email: str, db: Session = Depends(get_db)):
