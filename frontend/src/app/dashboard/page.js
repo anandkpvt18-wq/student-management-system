@@ -4,9 +4,13 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://student-management-api-b4da.onrender.com';
+
 export default function Dashboard() {
   const router = useRouter();
   const [user, setUser] = useState(null);
+  const [stats, setStats] = useState({ enrolled_courses: 0, active_assignments: 0, notifications: 2 });
+  const [loadingStats, setLoadingStats] = useState(true);
 
   useEffect(() => {
     const stored = localStorage.getItem('user');
@@ -14,7 +18,27 @@ export default function Dashboard() {
       router.push('/auth/signin');
       return;
     }
-    setUser(JSON.parse(stored));
+    const userData = JSON.parse(stored);
+    setUser(userData);
+
+    // Fetch stats
+    async function fetchStats() {
+      try {
+        const res = await fetch(`${API_URL}/courses/my?user_email=${userData.email}`);
+        if (res.ok) {
+          const data = await res.json();
+          setStats(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch dashboard stats", err);
+      } finally {
+        setLoadingStats(false);
+      }
+    }
+
+    if (userData.email) {
+      fetchStats();
+    }
   }, [router]);
 
   function handleSignOut() {
@@ -88,7 +112,9 @@ export default function Dashboard() {
                 {user.role === 'admin' ? 'Security' : user.role === 'teacher' ? 'Classes' : 'Courses'}
               </h3>
               <p className="dash-card-value">
-                {user.role === 'admin' ? 'System Active' : user.role === 'teacher' ? '4 Active' : '6 Enrolled'}
+                {user.role === 'admin' ? 'System Active' : 
+                 user.role === 'teacher' ? '4 Active' : 
+                 `${stats.enrolled_courses} Enrolled`}
               </p>
             </div>
           </div>
@@ -97,7 +123,7 @@ export default function Dashboard() {
             <div className="dash-card-icon">🔔</div>
             <div className="dash-card-content">
               <h3>Notifications</h3>
-              <p className="dash-card-meta">2 New Updates</p>
+              <p className="dash-card-meta">{stats.notifications} New Updates</p>
             </div>
           </div>
         </div>
@@ -125,7 +151,7 @@ export default function Dashboard() {
               </>
             ) : (
               <>
-                <button className="action-btn">📚 My Courses</button>
+                <Link href="/dashboard/courses" className="action-btn" style={{ textDecoration: 'none' }}>📚 My Courses</Link>
                 <button className="action-btn">📋 Assignments</button>
                 <button className="action-btn">📈 View Grades</button>
                 <button className="action-btn">📜 Transcript</button>

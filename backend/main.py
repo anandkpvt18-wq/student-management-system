@@ -10,6 +10,7 @@ async def lifespan(app: FastAPI):
     try:
         from database import engine
         import models.user
+        import models.course
         if engine:
             models.user.Base.metadata.create_all(bind=engine)
             print("Database tables initialized successfully.")
@@ -62,7 +63,10 @@ async def global_exception_handler(request, exc):
         }
     )
 
+from routers import auth, courses
+
 app.include_router(auth.router, prefix="/auth", tags=["Authentication"])
+app.include_router(courses.router, prefix="/courses", tags=["Courses"])
 
 @app.get("/")
 def health_check():
