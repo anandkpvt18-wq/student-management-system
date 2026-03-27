@@ -16,3 +16,4 @@ class User(Base):
     # Relationships
     courses_taught = relationship("Course", back_populates="teacher")
     enrollments = relationship("Enrollment", back_populates="user")
+    submissions = relationship("Submission", back_populates="user")

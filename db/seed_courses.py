@@ -1,9 +1,11 @@
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from datetime import datetime
 from dotenv import load_dotenv
 from models.user import User
 from models.course import Course, Enrollment
+from models.assignment import Assignment
 from database import Base
 
 load_dotenv()
@@ -41,7 +43,14 @@ def seed():
         db.add_all([enroll1, enroll2])
         db.commit()
 
-        print(f"Successfully seeded 3 courses and enrolled {student.full_name} in 2 of them!")
+        # 4. Create sample assignments
+        assign1 = Assignment(title="Python Basics Quiz", description="Complete the quiz on loops and functions.", course_id=course1.id, due_date=datetime(2026, 4, 15))
+        assign2 = Assignment(title="First React Component", description="Build a simple Counter component using hooks.", course_id=course2.id, due_date=datetime(2026, 4, 20))
+        
+        db.add_all([assign1, assign2])
+        db.commit()
+
+        print(f"Successfully seeded 3 courses, 2 enrollments, and 2 assignments for {student.full_name}!")
 
     except Exception as e:
         print(f"Error seeding data: {e}")

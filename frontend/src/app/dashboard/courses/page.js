@@ -50,18 +50,25 @@ export default function MyCourses() {
           <div className="role-badge" style={{ background: '#22c55e' }}>Student</div>
         </nav>
 
-        <div className="dashboard-welcome" style={{ textAlign: 'left' }}>
-          <h1 className="auth-title">My Enrolled Courses</h1>
-          <p className="auth-subtitle">Manage your current academic workload</p>
+        <div className="dashboard-welcome" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+          <div>
+            <h1 className="auth-title">My Enrolled Courses</h1>
+            <p className="auth-subtitle">Manage your current academic workload</p>
+          </div>
+          <Link href="/dashboard/courses/browse" className="btn btn-primary" style={{ padding: '0.8rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem' }}>
+            + Browse New Courses
+          </Link>
         </div>
 
         <div className="dashboard-grid">
           {loading ? (
-            <p>Loading courses...</p>
+            <div className="dash-card dash-card-wide" style={{ textAlign: 'center', background: 'rgba(255,255,255,0.05)' }}>
+              <p>Loading your courses...</p>
+            </div>
           ) : courses.length > 0 ? (
             courses.map(course => (
               <div key={course.id} className="dash-card">
-                <div className="dash-card-icon">📚</div>
+                <div className="dash-card-icon" style={{ background: 'linear-gradient(135deg, #10b981, #3b82f6)' }}>📚</div>
                 <h3>{course.name}</h3>
                 <p className="dash-card-meta">{course.description}</p>
               </div>
@@ -69,9 +76,6 @@ export default function MyCourses() {
           ) : (
             <div className="dash-card dash-card-wide" style={{ textAlign: 'center', padding: '3rem' }}>
               <p className="auth-subtitle">You are not enrolled in any courses yet.</p>
-              <Link href="/dashboard/courses/browse" className="btn btn-primary" style={{ marginTop: '1rem', display: 'inline-block' }}>
-                Browse Courses
-              </Link>
             </div>
           )}
         </div>
