@@ -106,18 +106,6 @@ export default function SignUp() {
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="role">Role</label>
-              <select
-                id="role"
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
-              >
-                <option value="student">Student</option>
-                <option value="teacher">Teacher</option>
-                <option value="admin">Admin</option>
-              </select>
-            </div>
 
             <button type="submit" className="btn btn-primary auth-btn" disabled={loading}>
               {loading ? 'Creating Account...' : 'Create Account'}

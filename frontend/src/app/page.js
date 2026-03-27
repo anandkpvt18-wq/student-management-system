@@ -15,8 +15,8 @@ export default function Home() {
             <span className="text-gradient">Management</span>
           </h1>
           <p className="description slide-up">
-            A powerful, intuitive platform designed to streamline administration, 
-            track progress, and empower educators and students alike.
+            A powerful, intuitive platform designed to streamline your learning, 
+            track your progress, and empower your academic journey.
           </p>
           <div className="cta-group slide-up-delay">
             <Link href="/auth/signup" className="btn btn-primary btn-glow">
@@ -44,8 +44,8 @@ export default function Home() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
             </div>
-            <h3>Secure Roles</h3>
-            <p>Enterprise-grade security ensuring proper access control for teachers, admins, and students.</p>
+            <h3>Personal Progress</h3>
+            <p>Enterprise-grade security ensuring your academic data is private, secure, and always accessible.</p>
           </div>
           <div className="feature-card fade-in delay-2">
             <div className="feature-icon">

@@ -4,6 +4,7 @@ from datetime import datetime
 sys.path.append(os.path.join(os.getcwd(), 'backend'))
 
 from database import SessionLocal
+from models.course import Course
 from models.user import User
 from models.assignment import Assignment, Submission
 
