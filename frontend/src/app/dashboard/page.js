@@ -21,23 +21,23 @@ export default function Dashboard() {
     const userData = JSON.parse(stored);
     setUser(userData);
 
-    // Fetch stats
-    async function fetchStats() {
+    // Fetch consolidated dashboard data
+    async function fetchDashboardData() {
       try {
-        const res = await fetch(`${API_URL}/courses/my?user_email=${userData.email}`);
+        const res = await fetch(`${API_URL}/dashboard/overview?user_email=${userData.email}`);
         if (res.ok) {
           const data = await res.json();
-          setStats(data);
+          setStats(data.stats);
         }
       } catch (err) {
-        console.error("Failed to fetch dashboard stats", err);
+        console.error("Failed to fetch dashboard data", err);
       } finally {
         setLoadingStats(false);
       }
     }
 
     if (userData.email) {
-      fetchStats();
+      fetchDashboardData();
     }
   }, [router]);
 
@@ -122,8 +122,8 @@ export default function Dashboard() {
           <div className="dash-card">
             <div className="dash-card-icon">🔔</div>
             <div className="dash-card-content">
-              <h3>Notifications</h3>
-              <p className="dash-card-meta">{stats.notifications} New Updates</p>
+              <h3>Academic Progress</h3>
+              <p className="dash-card-meta">{stats.graded_count} Graded Tasks</p>
             </div>
           </div>
         </div>
@@ -153,7 +153,7 @@ export default function Dashboard() {
               <>
                 <Link href="/dashboard/courses" className="action-btn" style={{ textDecoration: 'none' }}>📚 My Courses</Link>
                 <Link href="/dashboard/assignments" className="action-btn" style={{ textDecoration: 'none' }}>📋 Assignments</Link>
-                <button className="action-btn">📈 View Grades</button>
+                <Link href="/dashboard/grades" onClick={() => console.log('Navigating to Grades...')} className="action-btn" style={{ textDecoration: 'none' }}>📈 View Grades</Link>
                 <button className="action-btn">📜 Transcript</button>
               </>
             )}

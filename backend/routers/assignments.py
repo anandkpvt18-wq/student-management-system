@@ -25,6 +25,11 @@ def get_my_assignments(user_email: str, db: Session = Depends(get_db)):
 
 @router.post("/submit", response_model=SubmissionResponse)
 def submit_assignment(submission: SubmissionCreate, db: Session = Depends(get_db)):
+    # Verify user exists
+    user = db.query(User).filter(User.email.ilike(submission.user_email)).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+        
     # Verify assignment exists
     assignment = db.query(Assignment).filter(Assignment.id == submission.assignment_id).first()
     if not assignment:
@@ -32,7 +37,7 @@ def submit_assignment(submission: SubmissionCreate, db: Session = Depends(get_db
     
     new_submission = Submission(
         assignment_id=submission.assignment_id,
-        user_id=submission.user_id,
+        user_id=user.id,
         content=submission.content
     )
     db.add(new_submission)

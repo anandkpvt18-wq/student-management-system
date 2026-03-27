@@ -63,11 +63,13 @@ async def global_exception_handler(request, exc):
         }
     )
 
-from routers import auth, courses, assignments
+from routers import auth, courses, assignments, dashboard, grades
 
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(courses.router, prefix="/courses", tags=["courses"])
 app.include_router(assignments.router, prefix="/assignments", tags=["assignments"])
+app.include_router(dashboard.router, prefix="/dashboard", tags=["dashboard"])
+app.include_router(grades.router, prefix="/grades", tags=["grades"])
 
 @app.get("/")
 def health_check():

@@ -11,6 +11,36 @@ export default function MyAssignments() {
   const [user, setUser] = useState(null);
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [submittingId, setSubmittingId] = useState(null);
+  const [submitUrl, setSubmitUrl] = useState('');
+
+  const handleSubmit = async (taskId) => {
+    if (!submitUrl.trim()) return;
+    try {
+      const res = await fetch(`${API_URL}/assignments/submit`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          assignment_id: taskId,
+          user_email: user.email,
+          content: submitUrl
+        })
+      });
+      if (res.ok) {
+        alert('Submitted successfully!');
+        setSubmittingId(null);
+        setSubmitUrl('');
+        // Optimistically remove or update the assignment from the list if desired
+        // For now, simple alert and reset is fine.
+      } else {
+        alert('Failed to submit, try again.');
+        console.error(await res.text());
+      }
+    } catch (err) {
+      console.error(err);
+      alert('An error occurred. Please check console.');
+    }
+  };
 
   useEffect(() => {
     const stored = localStorage.getItem('user');
@@ -88,9 +118,24 @@ export default function MyAssignments() {
                 </div>
                 <p className="dash-card-meta">{task.description}</p>
                 <div style={{ marginTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem' }}>
-                  <button className="action-btn" style={{ width: '100%', justifyContent: 'center' }}>
-                    Submit Work
-                  </button>
+                  {submittingId === task.id ? (
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <input 
+                        type="text" 
+                        placeholder="Paste URL or text..." 
+                        value={submitUrl}
+                        onChange={(e) => setSubmitUrl(e.target.value)}
+                        style={{ flex: 1, padding: '0.5rem', borderRadius: '4px', border: '1px solid rgba(255,255,255,0.2)', background: 'transparent', color: 'white' }}
+                        autoFocus
+                      />
+                      <button className="action-btn" onClick={() => handleSubmit(task.id)} style={{ padding: '0.5rem 1rem' }}>Send</button>
+                      <button onClick={() => setSubmittingId(null)} style={{ background: 'transparent', color: '#94a3b8', border: 'none', cursor: 'pointer' }}>Cancel</button>
+                    </div>
+                  ) : (
+                    <button className="action-btn" onClick={() => setSubmittingId(task.id)} style={{ width: '100%', justifyContent: 'center' }}>
+                      Submit Work
+                    </button>
+                  )}
                 </div>
               </div>
             ))

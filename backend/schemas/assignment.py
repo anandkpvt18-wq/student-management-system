@@ -23,7 +23,7 @@ class SubmissionBase(BaseModel):
     content: str
 
 class SubmissionCreate(SubmissionBase):
-    user_id: int
+    user_email: str
 
 class SubmissionResponse(SubmissionBase):
     id: int

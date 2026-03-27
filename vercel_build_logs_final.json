@@ -1,0 +1,75 @@
+[
+{"type":"stdout","created":1774341749021,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Running build in Washington, D.C., USA (East) – iad1","id":"1774341749021523420754700000","date":1774341749021,"serial":"1774341749021523420754700000"}}
+,
+{"type":"stdout","created":1774341749023,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Build machine configuration: 2 cores, 8 GB","id":"1774341749023523420754700000","date":1774341749023,"serial":"1774341749023523420754700000"}}
+,
+{"type":"stdout","created":1774341749248,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Cloning github.com/anandkpvt18-wq/student-management-system (Branch: main, Commit: 228e10c)","id":"1774341749248523420754700000","date":1774341749248,"serial":"1774341749248523420754700000"}}
+,
+{"type":"stdout","created":1774341749249,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Previous build caches not available.","id":"1774341749249523420754700001","date":1774341749249,"serial":"1774341749249523420754700001"}}
+,
+{"type":"stdout","created":1774341753725,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Cloning completed: 4.477s","id":"1774341753725523420754700000","date":1774341753725,"serial":"1774341753725523420754700000"}}
+,
+{"type":"stdout","created":1774341754103,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Running \"vercel build\"","id":"1774341754103227277376700000","date":1774341754103,"serial":"1774341754103227277376700000"}}
+,
+{"type":"stderr","created":1774341754795,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Vercel CLI 50.35.0","id":"1774341754795227277376700000","date":1774341754795,"serial":"1774341754795227277376700000"}}
+,
+{"type":"stdout","created":1774341754998,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Installing dependencies...","id":"1774341754998227277376700000","date":1774341754998,"serial":"1774341754998227277376700000"}}
+,
+{"type":"stdout","created":1774341763539,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"","id":"1774341763539227277376700000","date":1774341763539,"serial":"1774341763539227277376700000"}}
+,
+{"type":"stdout","created":1774341763539,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"added 25 packages in 8s","id":"1774341763539227277376700001","date":1774341763539,"serial":"1774341763539227277376700001"}}
+,
+{"type":"stdout","created":1774341763540,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"","id":"1774341763540227277376700000","date":1774341763540,"serial":"1774341763540227277376700000"}}
+,
+{"type":"stdout","created":1774341763540,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"8 packages are looking for funding","id":"1774341763540227277376700001","date":1774341763540,"serial":"1774341763540227277376700001"}}
+,
+{"type":"stdout","created":1774341763540,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"  run `npm fund` for details","id":"1774341763540227277376700002","date":1774341763540,"serial":"1774341763540227277376700002"}}
+,
+{"type":"stdout","created":1774341763585,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Detected Next.js version: 16.2.1","id":"1774341763585227277376700000","date":1774341763585,"serial":"1774341763585227277376700000"}}
+,
+{"type":"stdout","created":1774341763589,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Running \"npm run build\"","id":"1774341763589227277376700000","date":1774341763589,"serial":"1774341763589227277376700000"}}
+,
+{"type":"stdout","created":1774341763687,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"","id":"1774341763687227277376700000","date":1774341763687,"serial":"1774341763687227277376700000"}}
+,
+{"type":"stdout","created":1774341763687,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"> frontend@0.1.0 build","id":"1774341763687227277376700001","date":1774341763687,"serial":"1774341763687227277376700001"}}
+,
+{"type":"stdout","created":1774341763688,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"> next build","id":"1774341763688227277376700000","date":1774341763688,"serial":"1774341763688227277376700000"}}
+,
+{"type":"stdout","created":1774341763688,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"","id":"1774341763688227277376700001","date":1774341763688,"serial":"1774341763688227277376700001"}}
+,
+{"type":"stdout","created":1774341764231,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Attention: Next.js now collects completely anonymous telemetry regarding usage.","id":"1774341764231227277376700000","date":1774341764231,"serial":"1774341764231227277376700000"}}
+,
+{"type":"stdout","created":1774341764232,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"This information is used to shape Next.js' roadmap and prioritize features.","id":"1774341764232227277376700000","date":1774341764232,"serial":"1774341764232227277376700000"}}
+,
+{"type":"stdout","created":1774341764232,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:","id":"1774341764232227277376700001","date":1774341764232,"serial":"1774341764232227277376700001"}}
+,
+{"type":"stdout","created":1774341764232,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"https://nextjs.org/telemetry","id":"1774341764232227277376700002","date":1774341764232,"serial":"1774341764232227277376700002"}}
+,
+{"type":"stdout","created":1774341764232,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"","id":"1774341764232227277376700003","date":1774341764232,"serial":"1774341764232227277376700003"}}
+,
+{"type":"stdout","created":1774341764257,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"▲ Next.js 16.2.1 (Turbopack)","id":"1774341764257227277376700000","date":1774341764257,"serial":"1774341764257227277376700000"}}
+,
+{"type":"stdout","created":1774341764258,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"","id":"1774341764258227277376700000","date":1774341764258,"serial":"1774341764258227277376700000"}}
+,
+{"type":"stdout","created":1774341764287,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"  Creating an optimized production build ...","id":"1774341764287227277376700000","date":1774341764287,"serial":"1774341764287227277376700000"}}
+,
+{"type":"stderr","created":1774341769290,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"","id":"1774341769290227277376700000","date":1774341769290,"serial":"1774341769290227277376700000"}}
+,
+{"type":"stderr","created":1774341769292,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"> Build error occurred","id":"1774341769292227277376700000","date":1774341769292,"serial":"1774341769292227277376700000"}}
+,
+{"type":"stderr","created":1774341769293,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Error: Turbopack build failed with 1 errors:","id":"1774341769293227277376700000","date":1774341769293,"serial":"1774341769293227277376700000"}}
+,
+{"type":"stderr","created":1774341769294,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"./frontend/src/app/page.js","id":"1774341769294227277376700000","date":1774341769294,"serial":"1774341769294227277376700000"}}
+,
+{"type":"stderr","created":1774341769294,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"'styled-jsx' cannot be imported from a Server Component module","id":"1774341769294227277376700001","date":1774341769294,"serial":"1774341769294227277376700001"}}
+,
+{"type":"stderr","created":1774341769294,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"It only works in a Client Component but none of its parents are marked with 'use client', so they're Server Components by default.","id":"1774341769294227277376700002","date":1774341769294,"serial":"1774341769294227277376700002"}}
+,
+{"type":"stderr","created":1774341769294,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"","id":"1774341769294227277376700003","date":1774341769294,"serial":"1774341769294227277376700003"}}
+,
+{"type":"stderr","created":1774341769294,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"","id":"1774341769294227277376700004","date":1774341769294,"serial":"1774341769294227277376700004"}}
+,
+{"type":"stderr","created":1774341769294,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"    at ignore-listed frames","id":"1774341769294227277376700005","date":1774341769294,"serial":"1774341769294227277376700005"}}
+,
+{"type":"stderr","created":1774341769330,"payload":{"deploymentId":"dpl_BrHkS5gqViueFXvJvqdeC8sy7pwN","info":{"type":"build","name":"bld_4n0pxwk1w","entrypoint":"."},"text":"Error: Command \"npm run build\" exited with 1","id":"1774341769330227277376700000","date":1774341769330,"serial":"1774341769330227277376700000"}}
+]

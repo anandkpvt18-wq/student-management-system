@@ -1,0 +1,81 @@
+[
+{"type":"stdout","created":1774352292569,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Running build in Washington, D.C., USA (East) – iad1","id":"1774352292569478866832500000","date":1774352292569,"serial":"1774352292569478866832500000"}}
+,
+{"type":"stdout","created":1774352292570,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Build machine configuration: 2 cores, 8 GB","id":"1774352292570478866832500000","date":1774352292570,"serial":"1774352292570478866832500000"}}
+,
+{"type":"stdout","created":1774352292686,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Cloning github.com/anandkpvt18-wq/student-management-system (Branch: vercel/react-server-components-cve-vu-z88oha, Commit: d520d7d)","id":"1774352292686478866832500000","date":1774352292686,"serial":"1774352292686478866832500000"}}
+,
+{"type":"stdout","created":1774352292687,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Previous build caches not available.","id":"1774352292687478866832500000","date":1774352292687,"serial":"1774352292687478866832500000"}}
+,
+{"type":"stdout","created":1774352292878,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Cloning completed: 192.000ms","id":"1774352292878478866832500000","date":1774352292878,"serial":"1774352292878478866832500000"}}
+,
+{"type":"stdout","created":1774352293224,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Running \"vercel build\"","id":"1774352293224987732384000000","date":1774352293224,"serial":"1774352293224987732384000000"}}
+,
+{"type":"stderr","created":1774352293915,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Vercel CLI 50.35.0","id":"1774352293915987732384000000","date":1774352293915,"serial":"1774352293915987732384000000"}}
+,
+{"type":"stdout","created":1774352294112,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Installing dependencies...","id":"1774352294112987732384000000","date":1774352294112,"serial":"1774352294112987732384000000"}}
+,
+{"type":"stdout","created":1774352303611,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"","id":"1774352303611987732384000000","date":1774352303611,"serial":"1774352303611987732384000000"}}
+,
+{"type":"stdout","created":1774352303624,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"added 32 packages in 8s","id":"1774352303624987732384000000","date":1774352303624,"serial":"1774352303624987732384000000"}}
+,
+{"type":"stdout","created":1774352303627,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"","id":"1774352303627987732384000000","date":1774352303627,"serial":"1774352303627987732384000000"}}
+,
+{"type":"stdout","created":1774352303628,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"8 packages are looking for funding","id":"1774352303628987732384000000","date":1774352303628,"serial":"1774352303628987732384000000"}}
+,
+{"type":"stdout","created":1774352303630,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"  run `npm fund` for details","id":"1774352303630987732384000000","date":1774352303630,"serial":"1774352303630987732384000000"}}
+,
+{"type":"stdout","created":1774352303702,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Detected Next.js version: 15.1.11","id":"1774352303702987732384000000","date":1774352303702,"serial":"1774352303702987732384000000"}}
+,
+{"type":"stdout","created":1774352303709,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Running \"npm run build\"","id":"1774352303709987732384000000","date":1774352303709,"serial":"1774352303709987732384000000"}}
+,
+{"type":"stdout","created":1774352303815,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"","id":"1774352303815987732384000000","date":1774352303815,"serial":"1774352303815987732384000000"}}
+,
+{"type":"stdout","created":1774352303816,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"> frontend@0.1.0 build","id":"1774352303816987732384000000","date":1774352303816,"serial":"1774352303816987732384000000"}}
+,
+{"type":"stdout","created":1774352303816,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"> next build","id":"1774352303816987732384000001","date":1774352303816,"serial":"1774352303816987732384000001"}}
+,
+{"type":"stdout","created":1774352303816,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"","id":"1774352303816987732384000002","date":1774352303816,"serial":"1774352303816987732384000002"}}
+,
+{"type":"stdout","created":1774352304438,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Attention: Next.js now collects completely anonymous telemetry regarding usage.","id":"1774352304438987732384000000","date":1774352304438,"serial":"1774352304438987732384000000"}}
+,
+{"type":"stdout","created":1774352304438,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"This information is used to shape Next.js' roadmap and prioritize features.","id":"1774352304438987732384000001","date":1774352304438,"serial":"1774352304438987732384000001"}}
+,
+{"type":"stdout","created":1774352304439,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:","id":"1774352304439987732384000000","date":1774352304439,"serial":"1774352304439987732384000000"}}
+,
+{"type":"stdout","created":1774352304439,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"https://nextjs.org/telemetry","id":"1774352304439987732384000001","date":1774352304439,"serial":"1774352304439987732384000001"}}
+,
+{"type":"stdout","created":1774352304439,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"","id":"1774352304439987732384000002","date":1774352304439,"serial":"1774352304439987732384000002"}}
+,
+{"type":"stdout","created":1774352304494,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"   ▲ Next.js 15.1.11","id":"1774352304494987732384000000","date":1774352304494,"serial":"1774352304494987732384000000"}}
+,
+{"type":"stdout","created":1774352304495,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"","id":"1774352304495987732384000000","date":1774352304495,"serial":"1774352304495987732384000000"}}
+,
+{"type":"stdout","created":1774352304512,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"   Creating an optimized production build ...","id":"1774352304512987732384000000","date":1774352304512,"serial":"1774352304512987732384000000"}}
+,
+{"type":"stderr","created":1774352307623,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Failed to compile.","id":"1774352307623987732384000000","date":1774352307623,"serial":"1774352307623987732384000000"}}
+,
+{"type":"stderr","created":1774352307624,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"","id":"1774352307624987732384000000","date":1774352307624,"serial":"1774352307624987732384000000"}}
+,
+{"type":"stderr","created":1774352307624,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"./src/app/page.js","id":"1774352307624987732384000001","date":1774352307624,"serial":"1774352307624987732384000001"}}
+,
+{"type":"stderr","created":1774352307624,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"'client-only' cannot be imported from a Server Component module. It should only be used from a Client Component.","id":"1774352307624987732384000002","date":1774352307624,"serial":"1774352307624987732384000002"}}
+,
+{"type":"stderr","created":1774352307624,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"","id":"1774352307624987732384000003","date":1774352307624,"serial":"1774352307624987732384000003"}}
+,
+{"type":"stderr","created":1774352307624,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"The error was caused by using 'styled-jsx' in './src/app/page.js'. It only works in a Client Component but none of its parents are marked with \"use client\", so they're Server Components by default.","id":"1774352307624987732384000004","date":1774352307624,"serial":"1774352307624987732384000004"}}
+,
+{"type":"stderr","created":1774352307624,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"","id":"1774352307624987732384000005","date":1774352307624,"serial":"1774352307624987732384000005"}}
+,
+{"type":"stderr","created":1774352307624,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Import trace for requested module:","id":"1774352307624987732384000006","date":1774352307624,"serial":"1774352307624987732384000006"}}
+,
+{"type":"stderr","created":1774352307624,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"  ./src/app/page.js","id":"1774352307624987732384000007","date":1774352307624,"serial":"1774352307624987732384000007"}}
+,
+{"type":"stderr","created":1774352307624,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"","id":"1774352307624987732384000008","date":1774352307624,"serial":"1774352307624987732384000008"}}
+,
+{"type":"stderr","created":1774352307636,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"","id":"1774352307636987732384000000","date":1774352307636,"serial":"1774352307636987732384000000"}}
+,
+{"type":"stderr","created":1774352307637,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"> Build failed because of webpack errors","id":"1774352307637987732384000000","date":1774352307637,"serial":"1774352307637987732384000000"}}
+,
+{"type":"stderr","created":1774352307664,"payload":{"deploymentId":"dpl_ANozZ13h47waRGqpzGbS9kCbRUA1","info":{"type":"build","name":"bld_g57oq1otl","entrypoint":"."},"text":"Error: Command \"npm run build\" exited with 1","id":"1774352307664987732384000000","date":1774352307664,"serial":"1774352307664987732384000000"}}
+]

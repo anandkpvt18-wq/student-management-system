@@ -1,0 +1,111 @@
+[
+{"type":"stdout","created":1774420959979,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Running build in Washington, D.C., USA (East) – iad1","id":"1774420959979308641143900000","date":1774420959979,"serial":"1774420959979308641143900000"}}
+,
+{"type":"stdout","created":1774420959980,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Build machine configuration: 2 cores, 8 GB","id":"1774420959980308641143900000","date":1774420959980,"serial":"1774420959980308641143900000"}}
+,
+{"type":"stdout","created":1774420960103,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Cloning github.com/anandkpvt18-wq/student-management-system (Branch: main, Commit: 28297df)","id":"1774420960103308641143900001","date":1774420960103,"serial":"1774420960103308641143900001"}}
+,
+{"type":"stdout","created":1774420960104,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Previous build caches not available.","id":"1774420960104308641143900001","date":1774420960104,"serial":"1774420960104308641143900001"}}
+,
+{"type":"stdout","created":1774420960316,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Cloning completed: 212.000ms","id":"1774420960316308641143900000","date":1774420960316,"serial":"1774420960316308641143900000"}}
+,
+{"type":"stdout","created":1774420960706,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Running \"vercel build\"","id":"1774420960706369692390900000","date":1774420960706,"serial":"1774420960706369692390900000"}}
+,
+{"type":"stderr","created":1774420961418,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Vercel CLI 50.35.0","id":"1774420961418369692390900000","date":1774420961418,"serial":"1774420961418369692390900000"}}
+,
+{"type":"stdout","created":1774420961670,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Installing dependencies...","id":"1774420961670369692390900000","date":1774420961670,"serial":"1774420961670369692390900000"}}
+,
+{"type":"stderr","created":1774420974192,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"npm warn deprecated next@15.4.0: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/CVE-2025-66478 for more details.","id":"1774420974192369692390900000","date":1774420974192,"serial":"1774420974192369692390900000"}}
+,
+{"type":"stdout","created":1774420974336,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"","id":"1774420974336369692390900000","date":1774420974336,"serial":"1774420974336369692390900000"}}
+,
+{"type":"stdout","created":1774420974337,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"added 21 packages in 12s","id":"1774420974337369692390900000","date":1774420974337,"serial":"1774420974337369692390900000"}}
+,
+{"type":"stdout","created":1774420974337,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"","id":"1774420974337369692390900001","date":1774420974337,"serial":"1774420974337369692390900001"}}
+,
+{"type":"stdout","created":1774420974344,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"6 packages are looking for funding","id":"1774420974344369692390900000","date":1774420974344,"serial":"1774420974344369692390900000"}}
+,
+{"type":"stdout","created":1774420974344,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"  run `npm fund` for details","id":"1774420974344369692390900001","date":1774420974344,"serial":"1774420974344369692390900001"}}
+,
+{"type":"stdout","created":1774420974388,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Detected Next.js version: 15.4.0","id":"1774420974388369692390900000","date":1774420974388,"serial":"1774420974388369692390900000"}}
+,
+{"type":"stdout","created":1774420974391,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Running \"npm run build\"","id":"1774420974391369692390900000","date":1774420974391,"serial":"1774420974391369692390900000"}}
+,
+{"type":"stdout","created":1774420974502,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"","id":"1774420974502369692390900000","date":1774420974502,"serial":"1774420974502369692390900000"}}
+,
+{"type":"stdout","created":1774420974505,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"> frontend@0.1.0 build","id":"1774420974505369692390900000","date":1774420974505,"serial":"1774420974505369692390900000"}}
+,
+{"type":"stdout","created":1774420974505,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"> next build","id":"1774420974505369692390900001","date":1774420974505,"serial":"1774420974505369692390900001"}}
+,
+{"type":"stdout","created":1774420974506,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"","id":"1774420974506369692390900000","date":1774420974506,"serial":"1774420974506369692390900000"}}
+,
+{"type":"stdout","created":1774420975153,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Attention: Next.js now collects completely anonymous telemetry regarding usage.","id":"1774420975153369692390900000","date":1774420975153,"serial":"1774420975153369692390900000"}}
+,
+{"type":"stdout","created":1774420975155,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"This information is used to shape Next.js' roadmap and prioritize features.","id":"1774420975155369692390900000","date":1774420975155,"serial":"1774420975155369692390900000"}}
+,
+{"type":"stdout","created":1774420975155,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:","id":"1774420975155369692390900001","date":1774420975155,"serial":"1774420975155369692390900001"}}
+,
+{"type":"stdout","created":1774420975155,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"https://nextjs.org/telemetry","id":"1774420975155369692390900002","date":1774420975155,"serial":"1774420975155369692390900002"}}
+,
+{"type":"stdout","created":1774420975156,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"","id":"1774420975156369692390900000","date":1774420975156,"serial":"1774420975156369692390900000"}}
+,
+{"type":"stdout","created":1774420975214,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"   ▲ Next.js 15.4.0","id":"1774420975214369692390900000","date":1774420975214,"serial":"1774420975214369692390900000"}}
+,
+{"type":"stdout","created":1774420975215,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"","id":"1774420975215369692390900000","date":1774420975215,"serial":"1774420975215369692390900000"}}
+,
+{"type":"stdout","created":1774420975233,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"   Creating an optimized production build ...","id":"1774420975233369692390900000","date":1774420975233,"serial":"1774420975233369692390900000"}}
+,
+{"type":"stdout","created":1774420983269,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":" ✓ Compiled successfully in 4.0s","id":"1774420983269369692390900000","date":1774420983269,"serial":"1774420983269369692390900000"}}
+,
+{"type":"stdout","created":1774420983271,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"   Linting and checking validity of types ...","id":"1774420983271369692390900000","date":1774420983271,"serial":"1774420983271369692390900000"}}
+,
+{"type":"stdout","created":1774420983364,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"   Collecting page data ...","id":"1774420983364369692390900000","date":1774420983364,"serial":"1774420983364369692390900000"}}
+,
+{"type":"stdout","created":1774420984771,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"   Generating static pages (0/5) ...","id":"1774420984771369692390900000","date":1774420984771,"serial":"1774420984771369692390900000"}}
+,
+{"type":"stdout","created":1774420985599,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"   Generating static pages (1/5) \r","id":"1774420985599369692390900000","date":1774420985599,"serial":"1774420985599369692390900000"}}
+,
+{"type":"stdout","created":1774420985600,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"   Generating static pages (2/5) \r","id":"1774420985600369692390900000","date":1774420985600,"serial":"1774420985600369692390900000"}}
+,
+{"type":"stdout","created":1774420985600,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"   Generating static pages (3/5) \r","id":"1774420985600369692390900001","date":1774420985600,"serial":"1774420985600369692390900001"}}
+,
+{"type":"stdout","created":1774420985600,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":" ✓ Generating static pages (5/5)","id":"1774420985600369692390900002","date":1774420985600,"serial":"1774420985600369692390900002"}}
+,
+{"type":"stdout","created":1774420986077,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"   Finalizing page optimization ...","id":"1774420986077369692390900000","date":1774420986077,"serial":"1774420986077369692390900000"}}
+,
+{"type":"stdout","created":1774420986080,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"   Collecting build traces ...","id":"1774420986080369692390900000","date":1774420986080,"serial":"1774420986080369692390900000"}}
+,
+{"type":"stdout","created":1774420992764,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"","id":"1774420992764369692390900000","date":1774420992764,"serial":"1774420992764369692390900000"}}
+,
+{"type":"stdout","created":1774420992774,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Route (app)                                 Size  First Load JS","id":"1774420992774369692390900000","date":1774420992774,"serial":"1774420992774369692390900000"}}
+,
+{"type":"stdout","created":1774420992775,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"┌ ○ /                                    3.46 kB         103 kB","id":"1774420992775369692390900000","date":1774420992775,"serial":"1774420992775369692390900000"}}
+,
+{"type":"stdout","created":1774420992775,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"└ ○ /_not-found                             1 kB         101 kB","id":"1774420992775369692390900001","date":1774420992775,"serial":"1774420992775369692390900001"}}
+,
+{"type":"stdout","created":1774420992775,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"+ First Load JS shared by all             100 kB","id":"1774420992775369692390900002","date":1774420992775,"serial":"1774420992775369692390900002"}}
+,
+{"type":"stdout","created":1774420992775,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"  ├ chunks/4bd1b696-86726bcf2d64aae9.js  53.8 kB","id":"1774420992775369692390900003","date":1774420992775,"serial":"1774420992775369692390900003"}}
+,
+{"type":"stdout","created":1774420992776,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"  ├ chunks/684-0906053fbb3e5a93.js       44.3 kB","id":"1774420992776369692390900000","date":1774420992776,"serial":"1774420992776369692390900000"}}
+,
+{"type":"stdout","created":1774420992776,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"  └ other shared chunks (total)          1.89 kB","id":"1774420992776369692390900001","date":1774420992776,"serial":"1774420992776369692390900001"}}
+,
+{"type":"stdout","created":1774420992776,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"","id":"1774420992776369692390900002","date":1774420992776,"serial":"1774420992776369692390900002"}}
+,
+{"type":"stdout","created":1774420992776,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"","id":"1774420992776369692390900003","date":1774420992776,"serial":"1774420992776369692390900003"}}
+,
+{"type":"stdout","created":1774420992776,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"○  (Static)  prerendered as static content","id":"1774420992776369692390900004","date":1774420992776,"serial":"1774420992776369692390900004"}}
+,
+{"type":"stdout","created":1774420992776,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"","id":"1774420992776369692390900005","date":1774420992776,"serial":"1774420992776369692390900005"}}
+,
+{"type":"stdout","created":1774420992920,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Traced Next.js server files in: 88.843ms","id":"1774420992920369692390900000","date":1774420992920,"serial":"1774420992920369692390900000"}}
+,
+{"type":"stdout","created":1774420993026,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Created all serverless functions in: 106.673ms","id":"1774420993026369692390900000","date":1774420993026,"serial":"1774420993026369692390900000"}}
+,
+{"type":"stdout","created":1774420993037,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Collected static files (public/, static/, .next/static): 3.448ms","id":"1774420993037369692390900000","date":1774420993037,"serial":"1774420993037369692390900000"}}
+,
+{"type":"stderr","created":1774420993090,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Build Completed in /vercel/output [31s]","id":"1774420993090369692390900000","date":1774420993090,"serial":"1774420993090369692390900000"}}
+,
+{"type":"stderr","created":1774420994487,"payload":{"deploymentId":"dpl_8Nh1cc7U5yFet83AXDdbgE2U6Gvr","info":{"type":"build","name":"bld_as7pj0xkl","entrypoint":"."},"text":"Error: Vulnerable version of Next.js detected, please update immediately. Learn More: https://vercel.link/CVE-2025-66478","id":"1774420994487369692390900000","date":1774420994487,"serial":"1774420994487369692390900000"}}
+]
