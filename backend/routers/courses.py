@@ -32,10 +32,10 @@ def enroll_in_course(req: EnrollRequest, db: Session = Depends(get_db)):
     db.refresh(new_enrollment)
     return new_enrollment
 
-@router.get("/my", response_model=UserDashboardData)
+@router.get("/my", response_model=DashboardStats)
 def get_my_dashboard_stats(user_email: str, db: Session = Depends(get_db)):
     # Find user by email
-    user = db.query(User).filter(User.email == user_email).first()
+    user = db.query(User).filter(User.email.ilike(user_email)).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     

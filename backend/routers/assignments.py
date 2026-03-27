@@ -11,7 +11,7 @@ router = APIRouter()
 
 @router.get("/my", response_model=List[AssignmentResponse])
 def get_my_assignments(user_email: str, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == user_email).first()
+    user = db.query(User).filter(User.email.ilike(user_email)).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
