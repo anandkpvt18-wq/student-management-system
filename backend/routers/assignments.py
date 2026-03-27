@@ -4,7 +4,7 @@ from database import get_db
 from models.user import User
 from models.course import Enrollment
 from models.assignment import Assignment, Submission
-from schemas.assignment import AssignmentResponse, SubmissionResponse, SubmissionCreate
+from schemas.assignment import AssignmentResponse, SubmissionResponse, SubmissionCreate, GradeResponse
 from typing import List
 
 router = APIRouter()
@@ -44,3 +44,24 @@ def submit_assignment(submission: SubmissionCreate, db: Session = Depends(get_db
     db.commit()
     db.refresh(new_submission)
     return new_submission
+@router.get("/grades", response_model=List[GradeResponse])
+def get_user_grades(user_email: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email.ilike(user_email)).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+        
+    submissions = db.query(Submission).filter(
+        Submission.user_id == user.id,
+        Submission.grade.isnot(None)
+    ).all()
+    
+    # Transform to match schema
+    results = []
+    for s in submissions:
+        results.append({
+            "assignment_title": s.assignment.title,
+            "course_name": s.assignment.course.name,
+            "submitted_at": s.submitted_at,
+            "grade": s.grade
+        })
+    return results
