@@ -85,8 +85,6 @@ export default function SignIn() {
 
           <div className="demo-credentials">
             <p className="demo-title">Demo Accounts</p>
-            <p>Admin: <code>admin@school.com</code> / <code>admin123</code></p>
-            <p>Teacher: <code>teacher@school.com</code> / <code>teacher123</code></p>
             <p>Student: <code>student@school.com</code> / <code>student123</code></p>
           </div>
 
