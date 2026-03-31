@@ -14,7 +14,13 @@ if not DATABASE_URL:
     print("!!! Please add DATABASE_URL in the Render Dashboard (Environment tab) !!!")
 else:
     try:
-        engine = create_engine(DATABASE_URL)
+        engine = create_engine(
+            DATABASE_URL, 
+            pool_pre_ping=True, 
+            pool_recycle=300,
+            pool_size=10, 
+            max_overflow=20
+        )
     except Exception as e:
         print(f"!!! WARNING: Failed to create engine: {e} !!!")
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
