@@ -14,7 +14,7 @@ def get_all_courses(db: Session = Depends(get_db)):
 
 @router.post("/enroll", response_model=EnrollmentResponse)
 def enroll_in_course(req: EnrollRequest, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == req.user_email).first()
+    user = db.query(User).filter(User.email.ilike(req.user_email)).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
@@ -50,7 +50,7 @@ def get_my_dashboard_stats(user_email: str, db: Session = Depends(get_db)):
 
 @router.get("/enrolled", response_model=List[CourseResponse])
 def get_my_courses(user_email: str, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == user_email).first()
+    user = db.query(User).filter(User.email.ilike(user_email)).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
@@ -61,9 +61,20 @@ def get_my_courses(user_email: str, db: Session = Depends(get_db)):
     
     return courses
 
+@router.get("/teaching", response_model=List[CourseResponse])
+def get_teaching_courses(user_email: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email.ilike(user_email)).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    if user.role != "teacher":
+        raise HTTPException(status_code=403, detail="Not authorized - Only teachers can access this")
+    
+    return db.query(Course).filter(Course.teacher_id == user.id).all()
+
 @router.delete("/unenroll/{course_id}")
 def unenroll_course(course_id: int, user_email: str, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == user_email).first()
+    user = db.query(User).filter(User.email.ilike(user_email)).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
@@ -78,6 +89,25 @@ def unenroll_course(course_id: int, user_email: str, db: Session = Depends(get_d
     db.delete(enrollment)
     db.commit()
     return {"message": "Successfully unenrolled from course"}
+
+@router.delete("/{course_id}")
+def delete_course(course_id: int, user_email: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email.ilike(user_email)).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    if user.role != "teacher":
+        raise HTTPException(status_code=403, detail="Only teachers can delete courses")
+    
+    course = db.query(Course).filter(Course.id == course_id, Course.teacher_id == user.id).first()
+    if not course:
+        raise HTTPException(status_code=404, detail="Course not found or not owned by you")
+    
+    # Delete related enrollments first or rely on cascade (if configured)
+    db.query(Enrollment).filter(Enrollment.course_id == course.id).delete()
+    db.delete(course)
+    db.commit()
+    return {"message": "Course deleted successfully"}
 @router.get("/{course_id}", response_model=CourseResponse)
 def get_course_detail(course_id: int, db: Session = Depends(get_db)):
     course = db.query(Course).filter(Course.id == course_id).first()
