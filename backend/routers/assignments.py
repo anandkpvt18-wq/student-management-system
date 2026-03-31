@@ -5,6 +5,8 @@ from models.user import User
 from models.course import Enrollment
 from models.assignment import Assignment, Submission
 from schemas.assignment import AssignmentResponse, SubmissionResponse, SubmissionCreate, GradeResponse
+import schemas.assignment
+import models.course
 from typing import List
 
 router = APIRouter()
@@ -22,6 +24,37 @@ def get_my_assignments(user_email: str, db: Session = Depends(get_db)):
     # Get assignments for those courses
     assignments = db.query(Assignment).filter(Assignment.course_id.in_(course_ids)).all()
     return assignments
+
+@router.post("/", response_model=AssignmentResponse)
+def create_assignment(assignment: schemas.assignment.AssignmentCreate, db: Session = Depends(get_db)):
+    course = db.query(models.course.Course).filter(models.course.Course.id == assignment.course_id).first()
+    if not course:
+        raise HTTPException(status_code=404, detail="Course not found")
+        
+    default_questions = [
+        {
+            "question": f"What is the most important concept in {assignment.title}?",
+            "options": ["The core fundamentals", "Random trivia", "Syntax rules", "Nothing"],
+            "answer": 0
+        },
+        {
+            "question": "How do you apply this in a real-world project?",
+            "options": ["Read stackoverflow", "Build a small prototype", "Memorize it", "Ignore it"],
+            "answer": 1
+        }
+    ]
+    
+    new_assignment = Assignment(
+        title=assignment.title,
+        description=assignment.description,
+        due_date=assignment.due_date,
+        course_id=assignment.course_id,
+        questions=default_questions
+    )
+    db.add(new_assignment)
+    db.commit()
+    db.refresh(new_assignment)
+    return new_assignment
 
 @router.post("/submit", response_model=SubmissionResponse)
 def submit_assignment(submission: SubmissionCreate, db: Session = Depends(get_db)):

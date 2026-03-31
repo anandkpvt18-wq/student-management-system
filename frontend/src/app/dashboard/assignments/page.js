@@ -11,6 +11,10 @@ export default function MyAssignments() {
   const [user, setUser] = useState(null);
   const [assignments, setAssignments] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [courses, setCourses] = useState([]);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [newQuiz, setNewQuiz] = useState({ title: '', description: '', course_id: '' });
+  const [isCreating, setIsCreating] = useState(false);
   
   // Quiz State
   const [quizAssignment, setQuizAssignment] = useState(null);
@@ -28,24 +32,55 @@ export default function MyAssignments() {
     const userData = JSON.parse(stored);
     setUser(userData);
 
-    async function fetchAssignments() {
+    async function fetchData() {
       try {
-        const res = await fetch(`${API_URL}/assignments/my?user_email=${userData.email}`);
-        if (res.ok) {
-          const data = await res.json();
-          setAssignments(data);
-        }
+        const [assigRes, coursesRes] = await Promise.all([
+          fetch(`${API_URL}/assignments/my?user_email=${userData.email}`),
+          fetch(`${API_URL}/courses/enrolled?user_email=${userData.email}`)
+        ]);
+        if (assigRes.ok) setAssignments(await assigRes.json());
+        if (coursesRes.ok) setCourses(await coursesRes.json());
       } catch (err) {
-        console.error("Failed to fetch assignments", err);
+        console.error("Failed to fetch data", err);
       } finally {
         setLoading(false);
       }
     }
 
     if (userData.email) {
-      fetchAssignments();
+      fetchData();
     }
   }, [router]);
+
+  const handleAddQuiz = async (e) => {
+    e.preventDefault();
+    if (!newQuiz.title || !newQuiz.course_id) return alert("Title and Course are required.");
+    setIsCreating(true);
+    try {
+      const res = await fetch(`${API_URL}/assignments/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: newQuiz.title,
+          description: newQuiz.description,
+          course_id: parseInt(newQuiz.course_id),
+          due_date: new Date(new Date().setDate(new Date().getDate() + 7)).toISOString()
+        })
+      });
+      if (res.ok) {
+        const created = await res.json();
+        setAssignments([...assignments, created]);
+        setIsAddModalOpen(false);
+        setNewQuiz({ title: '', description: '', course_id: '' });
+      } else {
+        alert("Failed to create quiz.");
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsCreating(false);
+    }
+  };
 
   const startQuiz = (assignment) => {
     setQuizAssignment(assignment);
@@ -129,14 +164,22 @@ export default function MyAssignments() {
               </div>
             </nav>
 
-            <div className="dashboard-welcome" style={{ textAlign: 'left', marginBottom: '3rem' }}>
-              <h1 className="auth-title" style={{ 
-                background: 'linear-gradient(90deg, #f59e0b, #ef4444)', 
-                WebkitBackgroundClip: 'text', 
-                WebkitTextFillColor: 'transparent',
-                fontSize: '3rem'
-              }}>My Assignments</h1>
-              <p className="auth-subtitle">Complete your 10-question MCQ interactive quizzes to earn grades</p>
+            <div className="dashboard-welcome" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
+              <div>
+                <h1 className="auth-title" style={{ 
+                  background: 'linear-gradient(90deg, #f59e0b, #ef4444)', 
+                  WebkitBackgroundClip: 'text', 
+                  WebkitTextFillColor: 'transparent',
+                  fontSize: '3rem'
+                }}>My Assignments</h1>
+                <p className="auth-subtitle">Complete your interactive quizzes to earn grades</p>
+              </div>
+              <button 
+                onClick={() => setIsAddModalOpen(true)}
+                className="btn btn-primary" 
+                style={{ padding: '0.8rem 1.5rem', borderRadius: '12px', fontSize: '0.9rem' }}>
+                + Add New Quiz
+              </button>
             </div>
 
             {loading ? (
@@ -364,6 +407,42 @@ export default function MyAssignments() {
           100% { transform: scale(1); }
         }
       `}</style>
+      
+      {isAddModalOpen && (
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, background: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(5px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <div className="auth-card" style={{ width: '100%', maxWidth: '500px', background: '#1e1b4b', padding: '2.5rem', animation: 'slideUp 0.3s ease-out' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+              <h2 style={{ fontSize: '1.5rem', fontWeight: '700' }}>Create New Quiz</h2>
+              <button onClick={() => setIsAddModalOpen(false)} style={{ background: 'none', border: 'none', color: 'var(--text-muted)', fontSize: '1.5rem', cursor: 'pointer' }}>&times;</button>
+            </div>
+            <form onSubmit={handleAddQuiz} className="auth-form">
+              <div className="form-group">
+                <label>Quiz Title *</label>
+                <input type="text" required value={newQuiz.title} onChange={e => setNewQuiz({...newQuiz, title: e.target.value})} placeholder="e.g. Advanced React Patterns" />
+              </div>
+              <div className="form-group">
+                <label>Select Course *</label>
+                <select required value={newQuiz.course_id} onChange={e => setNewQuiz({...newQuiz, course_id: e.target.value})}>
+                  <option value="">-- Choose a Course --</option>
+                  {courses.map(c => (
+                    <option key={c.id} value={c.id}>{c.name}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-group">
+                <label>Description (Optional)</label>
+                <input type="text" value={newQuiz.description} onChange={e => setNewQuiz({...newQuiz, description: e.target.value})} placeholder="Brief overview of the quiz" />
+              </div>
+              <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+                <button type="button" onClick={() => setIsAddModalOpen(false)} className="btn btn-outline" style={{ flex: 1, padding: '0.8rem' }}>Cancel</button>
+                <button type="submit" disabled={isCreating} className="btn btn-primary" style={{ flex: 1, padding: '0.8rem', background: '#f59e0b', boxShadow: '0 0 15px rgba(245, 158, 11, 0.4)' }}>
+                  {isCreating ? 'Creating...' : 'Create Quiz'}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
