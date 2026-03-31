@@ -34,11 +34,27 @@ export default function MyCourses() {
     const userData = JSON.parse(stored);
     setUser(userData);
 
-    async function fetchCourses() {
+    async function syncAndFetchCourses() {
       try {
-        const res = await fetch(`${API_URL}/courses/all`);
-        if (res.ok) {
-          const data = await res.json();
+        // 1. Get all available courses (created by teachers)
+        const allRes = await fetch(`${API_URL}/courses/all`);
+        const allCourses = allRes.ok ? await allRes.json() : [];
+
+        // 2. Auto-enroll student in all courses they haven't joined yet
+        await Promise.all(
+          allCourses.map(course =>
+            fetch(`${API_URL}/courses/enroll`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ course_id: course.id, user_email: userData.email })
+            }).catch(() => {}) // Ignore errors (already enrolled = 400, which is fine)
+          )
+        );
+
+        // 3. Now fetch only enrolled courses (excludes any previously dropped)
+        const enrolledRes = await fetch(`${API_URL}/courses/enrolled?user_email=${userData.email}`);
+        if (enrolledRes.ok) {
+          const data = await enrolledRes.json();
           setCourses(data);
         }
       } catch (err) {
@@ -49,7 +65,7 @@ export default function MyCourses() {
     }
 
     if (userData.email) {
-      fetchCourses();
+      syncAndFetchCourses();
     }
   }, [router]);
 
