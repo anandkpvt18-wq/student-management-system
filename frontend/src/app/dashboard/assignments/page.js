@@ -194,8 +194,8 @@ export default function MyAssignments() {
             <div className="auth-card" style={{ padding: '3.5rem', background: 'rgba(255, 255, 255, 0.05)', backdropFilter: 'blur(30px)' }}>
               {!quizResult ? (
                 <>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '2.5rem' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
                       <span className="role-badge" style={{ background: 'rgba(245, 158, 11, 0.2)', color: '#f59e0b', fontSize: '0.8rem' }}>
                         Question {currentQuestionIndex + 1} of {quizAssignment.questions?.length}
                       </span>

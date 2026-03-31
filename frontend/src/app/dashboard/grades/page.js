@@ -61,62 +61,64 @@ export default function GradesPage() {
         </div>
 
         <div className="auth-card" style={{ padding: '0', overflow: 'hidden', background: 'rgba(255, 255, 255, 0.03)', backdropFilter: 'blur(20px)' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-            <thead>
-              <tr style={{ background: 'rgba(255,255,255,0.05)', borderBottom: '1px solid var(--glass-border)' }}>
-                <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Assignment</th>
-                <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Course</th>
-                <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Date</th>
-                <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', textAlign: 'right' }}>Grade</th>
-              </tr>
-            </thead>
-            <tbody>
-              {loading ? (
-                <tr>
-                  <td colSpan="4" style={{ padding: '4rem', textAlign: 'center', color: 'var(--text-muted)' }}>
-                    <div className="loading-spinner" style={{ margin: '0 auto 1rem' }}></div>
-                    Fetching your academic records...
-                  </td>
+          <div className="table-responsive">
+            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+              <thead>
+                <tr style={{ background: 'rgba(255,255,255,0.05)', borderBottom: '1px solid var(--glass-border)' }}>
+                  <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Assignment</th>
+                  <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Course</th>
+                  <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Date</th>
+                  <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', textAlign: 'right' }}>Grade</th>
                 </tr>
-              ) : grades.length > 0 ? (
-                grades.map((g, idx) => (
-                  <tr key={idx} style={{ 
-                    borderBottom: '1px solid rgba(255,255,255,0.05)', 
-                    transition: 'background 0.2s',
-                    cursor: 'default'
-                  }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
-                     onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}>
-                    <td style={{ padding: '1.2rem 1.5rem', fontWeight: '500' }}>{g.assignment_title}</td>
-                    <td style={{ padding: '1.2rem 1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{g.course_name}</td>
-                    <td style={{ padding: '1.2rem 1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
-                      {new Date(g.submitted_at).toLocaleDateString()}
-                    </td>
-                    <td style={{ padding: '1.2rem 1.5rem', textAlign: 'right' }}>
-                      <span className="role-badge" style={{ 
-                        background: g.grade.startsWith('A') || parseInt(g.grade) >= 80 ? 'rgba(34, 197, 94, 0.15)' : 'rgba(139, 92, 246, 0.15)',
-                        color: g.grade.startsWith('A') || parseInt(g.grade) >= 80 ? '#4ade80' : '#a78bfa',
-                        border: '1px solid currentColor',
-                        padding: '0.4rem 1rem',
-                        minWidth: '60px',
-                        display: 'inline-block',
-                        textAlign: 'center',
-                        fontWeight: '800'
-                      }}>
-                        {g.grade}
-                      </span>
+              </thead>
+              <tbody>
+                {loading ? (
+                  <tr>
+                    <td colSpan="4" style={{ padding: '4rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+                      <div className="loading-spinner" style={{ margin: '0 auto 1rem' }}></div>
+                      Fetching your academic records...
                     </td>
                   </tr>
-                ))
-              ) : (
-                <tr>
-                  <td colSpan="4" style={{ padding: '5rem', textAlign: 'center' }}>
-                    <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎓</div>
-                    <p className="auth-subtitle">No graded submissions found. Keep up the good work!</p>
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
+                ) : grades.length > 0 ? (
+                  grades.map((g, idx) => (
+                    <tr key={idx} style={{ 
+                      borderBottom: '1px solid rgba(255,255,255,0.05)', 
+                      transition: 'background 0.2s',
+                      cursor: 'default'
+                    }} onMouseOver={(e) => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'}
+                       onMouseOut={(e) => e.currentTarget.style.background = 'transparent'}>
+                      <td style={{ padding: '1.2rem 1.5rem', fontWeight: '500' }}>{g.assignment_title}</td>
+                      <td style={{ padding: '1.2rem 1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>{g.course_name}</td>
+                      <td style={{ padding: '1.2rem 1.5rem', color: 'var(--text-muted)', fontSize: '0.9rem' }}>
+                        {new Date(g.submitted_at).toLocaleDateString()}
+                      </td>
+                      <td style={{ padding: '1.2rem 1.5rem', textAlign: 'right' }}>
+                        <span className="role-badge" style={{ 
+                          background: g.grade.startsWith('A') || parseInt(g.grade) >= 80 ? 'rgba(34, 197, 94, 0.15)' : 'rgba(139, 92, 246, 0.15)',
+                          color: g.grade.startsWith('A') || parseInt(g.grade) >= 80 ? '#4ade80' : '#a78bfa',
+                          border: '1px solid currentColor',
+                          padding: '0.4rem 1rem',
+                          minWidth: '60px',
+                          display: 'inline-block',
+                          textAlign: 'center',
+                          fontWeight: '800'
+                        }}>
+                          {g.grade}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan="4" style={{ padding: '5rem', textAlign: 'center' }}>
+                      <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎓</div>
+                      <p className="auth-subtitle">No graded submissions found. Keep up the good work!</p>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         <div style={{ marginTop: '2.5rem', textAlign: 'center' }}>

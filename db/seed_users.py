@@ -23,8 +23,6 @@ CREATE TABLE IF NOT EXISTS users (
 
 # Insert sample users (skip if email already exists)
 users = [
-    ("admin@school.com", hash_password("admin123"), "Admin User", "admin"),
-    ("teacher@school.com", hash_password("teacher123"), "Jane Teacher", "teacher"),
     ("student@school.com", hash_password("student123"), "John Student", "student"),
 ]
 

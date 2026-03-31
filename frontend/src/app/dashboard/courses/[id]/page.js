@@ -62,15 +62,9 @@ export default function CourseDetail({ params: paramsPromise }) {
           <Link href="/dashboard/courses" className="nav-logo">&larr; Back to My Courses</Link>
         </nav>
 
-        <div className="course-hero" style={{ 
-          background: 'rgba(255, 255, 255, 0.03)', 
-          padding: '3rem', 
-          borderRadius: '24px', 
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-          marginBottom: '3rem'
-        }}>
+        <div className="course-hero">
           <div className="dash-card-icon" style={{ fontSize: '3rem', marginBottom: '1.5rem' }}>📚</div>
-          <h1 className="auth-title" style={{ fontSize: '2.5rem', marginBottom: '1rem' }}>{course.name}</h1>
+          <h1 className="auth-title" style={{ marginBottom: '1rem' }}>{course.name}</h1>
           <p className="auth-subtitle" style={{ fontSize: '1.1rem', maxWidth: '600px' }}>{course.description}</p>
         </div>
 

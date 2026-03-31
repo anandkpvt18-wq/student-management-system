@@ -60,6 +60,24 @@ def get_my_courses(user_email: str, db: Session = Depends(get_db)):
     courses = db.query(Course).filter(Course.id.in_(course_ids)).all()
     
     return courses
+
+@router.delete("/unenroll/{course_id}")
+def unenroll_course(course_id: int, user_email: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email == user_email).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    enrollment = db.query(Enrollment).filter(
+        Enrollment.user_id == user.id,
+        Enrollment.course_id == course_id
+    ).first()
+    
+    if not enrollment:
+        raise HTTPException(status_code=404, detail="Enrollment not found")
+    
+    db.delete(enrollment)
+    db.commit()
+    return {"message": "Successfully unenrolled from course"}
 @router.get("/{course_id}", response_model=CourseResponse)
 def get_course_detail(course_id: int, db: Session = Depends(get_db)):
     course = db.query(Course).filter(Course.id == course_id).first()

@@ -61,7 +61,7 @@ export default function MyCourses() {
           </div>
         </nav>
 
-        <div className="dashboard-welcome" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+        <div className="dashboard-welcome" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', marginBottom: '3rem' }}>
           <div>
             <h1 className="auth-title">My Enrolled Courses</h1>
             <p className="auth-subtitle">Manage your current academic workload</p>
@@ -78,11 +78,41 @@ export default function MyCourses() {
             </div>
           ) : courses.length > 0 ? (
             courses.map(course => (
-              <Link key={course.id} href={`/dashboard/courses/${course.id}`} className="dash-card" style={{ textDecoration: 'none', display: 'block' }}>
-                <div className="dash-card-icon" style={{ background: 'linear-gradient(135deg, #10b981, #3b82f6)' }}>📚</div>
-                <h3>{course.name}</h3>
-                <p className="dash-card-meta">{course.description}</p>
-              </Link>
+              <div key={course.id} className="dash-card" style={{ display: 'flex', flexDirection: 'column', position: 'relative' }}>
+                <Link href={`/dashboard/courses/${course.id}`} style={{ textDecoration: 'none', display: 'block', flex: 1 }}>
+                  <div className="dash-card-icon" style={{ background: 'linear-gradient(135deg, #10b981, #3b82f6)' }}>📚</div>
+                  <h3>{course.name}</h3>
+                  <p className="dash-card-meta">{course.description}</p>
+                </Link>
+                <div style={{ marginTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '1rem', display: 'flex', justifyContent: 'flex-end' }}>
+                  <button 
+                    onClick={async (e) => {
+                      e.preventDefault();
+                      if (confirm(`Are you sure you want to drop ${course.name}?`)) {
+                        try {
+                          const res = await fetch(`${API_URL}/courses/unenroll/${course.id}?user_email=${user.email}`, {
+                            method: 'DELETE'
+                          });
+                          if (res.ok) {
+                            setCourses(courses.filter(c => c.id !== course.id));
+                          } else {
+                            alert('Failed to drop course.');
+                          }
+                        } catch (err) {
+                          console.error('Error dropping course', err);
+                          alert('Error dropping course.');
+                        }
+                      }
+                    }}
+                    className="btn btn-secondary btn-sm"
+                    style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderColor: 'rgba(239, 68, 68, 0.3)', boxShadow: 'none' }}
+                    onMouseOver={(e) => { e.currentTarget.style.background = 'rgba(239, 68, 68, 0.2)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                    onMouseOut={(e) => { e.currentTarget.style.background = 'rgba(239, 68, 68, 0.1)'; e.currentTarget.style.transform = 'none'; }}
+                  >
+                    Drop Course
+                  </button>
+                </div>
+              </div>
             ))
           ) : (
             <div className="dash-card dash-card-wide" style={{ textAlign: 'center', padding: '3rem' }}>
