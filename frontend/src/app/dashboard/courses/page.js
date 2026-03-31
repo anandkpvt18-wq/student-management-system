@@ -36,7 +36,7 @@ export default function MyCourses() {
 
     async function fetchCourses() {
       try {
-        const res = await fetch(`${API_URL}/courses/enrolled?user_email=${userData.email}`);
+        const res = await fetch(`${API_URL}/courses/all`);
         if (res.ok) {
           const data = await res.json();
           setCourses(data);
