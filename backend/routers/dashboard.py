@@ -15,29 +15,54 @@ def get_dashboard_overview(user_email: str, db: Session = Depends(get_db)):
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
     
-    # 1. Fetch enrollments
-    enrollments = db.query(Enrollment).filter(Enrollment.user_id == user.id).all()
-    course_ids = [e.course_id for e in enrollments]
-    
-    # 2. Fetch course details
-    courses = db.query(Course).filter(Course.id.in_(course_ids)).all()
-    
-    # 3. Fetch assignments
-    assignments = db.query(Assignment).filter(Assignment.course_id.in_(course_ids)).all()
-    
-    # 4. Fetch graded submissions count
-    graded_count = db.query(Submission).filter(
-        Submission.user_id == user.id,
-        Submission.grade.isnot(None)
-    ).count()
-    
-    # 5. Prepare statistics
-    stats = {
-        "course_count": len(courses),
-        "assignment_count": len(assignments),
-        "notifications": 3,
-        "graded_count": graded_count
-    }
+    if user.role == "teacher":
+        # 1. Fetch courses taught by the teacher
+        courses = db.query(Course).filter(Course.teacher_id == user.id).all()
+        course_ids = [c.id for c in courses]
+        
+        # 2. Fetch assignments created in those courses
+        assignments = db.query(Assignment).filter(Assignment.course_id.in_(course_ids)).all() if course_ids else []
+            
+        # 3. Fetch ungraded submissions count
+        ungraded_count = 0
+        if course_ids:
+            ungraded_count = db.query(Submission).join(Assignment).filter(
+                Assignment.course_id.in_(course_ids),
+                Submission.grade.is_(None)
+            ).count()
+            
+        stats = {
+            "course_count": len(courses),
+            "assignment_count": len(assignments),
+            "notifications": 0,
+            "ungraded_count": ungraded_count,
+            "graded_count": 0
+        }
+    else:
+        # Default (Student) logic
+        # 1. Fetch enrollments
+        enrollments = db.query(Enrollment).filter(Enrollment.user_id == user.id).all()
+        course_ids = [e.course_id for e in enrollments]
+        
+        # 2. Fetch course details
+        courses = db.query(Course).filter(Course.id.in_(course_ids)).all()
+        
+        # 3. Fetch assignments
+        assignments = db.query(Assignment).filter(Assignment.course_id.in_(course_ids)).all() if course_ids else []
+            
+        # 4. Fetch graded submissions count
+        graded_count = db.query(Submission).filter(
+            Submission.user_id == user.id,
+            Submission.grade.isnot(None)
+        ).count()
+        
+        stats = {
+            "course_count": len(courses),
+            "assignment_count": len(assignments),
+            "notifications": 3,
+            "graded_count": graded_count,
+            "ungraded_count": 0
+        }
     
     return {
         "user_name": user.full_name,

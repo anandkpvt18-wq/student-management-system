@@ -86,7 +86,8 @@ export default function SignIn() {
           <div className="demo-credentials" style={{ marginTop: '2rem', padding: '1.5rem', background: 'rgba(139, 92, 246, 0.05)', borderRadius: '12px', border: '1px solid rgba(139, 92, 246, 0.2)' }}>
             <p className="demo-title" style={{ color: '#a78bfa', fontWeight: '700', marginBottom: '0.5rem', textTransform: 'uppercase', fontSize: '0.75rem', letterSpacing: '0.05em' }}>DEMO ACCOUNTS</p>
             <p style={{ fontSize: '0.9rem', marginBottom: '0.4rem' }}>Student: <code>khushi@gmail.com</code> / <code>student123</code></p>
-            <p style={{ fontSize: '0.9rem', opacity: 0.7 }}>Student: <code>student@school.com</code> / <code>student123</code></p>
+            <p style={{ fontSize: '0.9rem', marginBottom: '0.4rem', opacity: 0.7 }}>Student: <code>student@school.com</code> / <code>student123</code></p>
+            <p style={{ fontSize: '0.9rem', opacity: 0.7 }}>Teacher: <code>teacher@school.com</code> / <code>teacher123</code></p>
           </div>
 
           <p className="auth-footer">

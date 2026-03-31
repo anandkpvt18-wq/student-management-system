@@ -83,36 +83,74 @@ export default function Dashboard() {
           </p>
         </div>
 
-        <div className="dashboard-grid">
-          <div className="dash-card">
-            <div className="dash-card-icon">👤</div>
-            <div className="dash-card-content">
-              <h3>Profile</h3>
-              <p className="dash-card-value">{user.full_name}</p>
-              <p className="dash-card-meta">{user.email}</p>
-            </div>
-          </div>
+        {user.role === 'teacher' ? (
+          <>
+            <div className="dashboard-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))' }}>
+              <div className="dash-card" style={{ background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%)', borderColor: 'rgba(245, 158, 11, 0.2)' }}>
+                <div className="dash-card-icon">👤</div>
+                <div className="dash-card-content">
+                  <h3>Instructor Profile</h3>
+                  <p className="dash-card-value">{user.full_name}</p>
+                  <p className="dash-card-meta">{user.email}</p>
+                </div>
+              </div>
 
-          <div className="dash-card">
-            <div className="dash-card-icon">🔔</div>
-            <div className="dash-card-content">
-              <h3>Academic Progress</h3>
-              <p className="dash-card-meta">{stats.graded_count} Graded Tasks</p>
+              <div className="dash-card" style={{ background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%)', borderColor: 'rgba(245, 158, 11, 0.2)' }}>
+                <div className="dash-card-icon">📚</div>
+                <div className="dash-card-content">
+                  <h3>Teaching Overview</h3>
+                  <p className="dash-card-meta" style={{ fontSize: '1.1rem', color: '#f59e0b', fontWeight: '600' }}>{stats.course_count || 0} Classes Taught</p>
+                  <p className="dash-card-meta" style={{ fontSize: '1.1rem', color: '#f59e0b', fontWeight: '600' }}>{stats.ungraded_count || 0} Ungraded Submissions</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        <div className="dash-card dash-card-wide">
-          <h3 style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
-            Academic Actions
-          </h3>
-          <div className="quick-actions">
-            <Link href="/dashboard/courses" className="action-btn" style={{ textDecoration: 'none' }}>📚 My Courses</Link>
-            <Link href="/dashboard/assignments" className="action-btn" style={{ textDecoration: 'none' }}>📋 Assignments</Link>
-            <Link href="/dashboard/grades" className="action-btn" style={{ textDecoration: 'none' }}>📈 View Grades</Link>
-            <Link href="/dashboard/transcript" className="action-btn" style={{ textDecoration: 'none' }}>📜 Transcript</Link>
-          </div>
-        </div>
+            <div className="dash-card dash-card-wide" style={{ marginTop: '2rem', borderTop: '4px solid #f59e0b' }}>
+              <h3 style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '1rem', color: '#f59e0b', marginBottom: '1.5rem', fontWeight: 'bold' }}>
+                Faculty Actions Workspace
+              </h3>
+              <div className="quick-actions" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+                <Link href="/dashboard/courses" className="action-btn" style={{ textDecoration: 'none', background: '#fff', color: '#000', border: '1px solid #e5e7eb' }}>📚 Manage Courses</Link>
+                <Link href="/dashboard/assignments" className="action-btn" style={{ textDecoration: 'none', background: '#fff', color: '#000', border: '1px solid #e5e7eb' }}>📋 Create Assignments</Link>
+                <Link href="/dashboard/grading" className="action-btn" style={{ textDecoration: 'none', background: '#f59e0b', color: '#fff', border: 'none' }}>✅ Grade Students</Link>
+                <Link href="/dashboard/students" className="action-btn" style={{ textDecoration: 'none', background: '#fff', color: '#000', border: '1px solid #e5e7eb' }}>👥 Student Roster</Link>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="dashboard-grid">
+              <div className="dash-card">
+                <div className="dash-card-icon">👤</div>
+                <div className="dash-card-content">
+                  <h3>Profile</h3>
+                  <p className="dash-card-value">{user.full_name}</p>
+                  <p className="dash-card-meta">{user.email}</p>
+                </div>
+              </div>
+
+              <div className="dash-card">
+                <div className="dash-card-icon">🔔</div>
+                <div className="dash-card-content">
+                  <h3>Academic Progress</h3>
+                  <p className="dash-card-meta">{stats.graded_count || 0} Graded Tasks</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="dash-card dash-card-wide">
+              <h3 style={{ textTransform: 'uppercase', letterSpacing: '0.1em', fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
+                Academic Actions
+              </h3>
+              <div className="quick-actions">
+                <Link href="/dashboard/courses" className="action-btn" style={{ textDecoration: 'none' }}>📚 My Courses</Link>
+                <Link href="/dashboard/assignments" className="action-btn" style={{ textDecoration: 'none' }}>📋 Assignments</Link>
+                <Link href="/dashboard/grades" className="action-btn" style={{ textDecoration: 'none' }}>📈 View Grades</Link>
+                <Link href="/dashboard/transcript" className="action-btn" style={{ textDecoration: 'none' }}>📜 Transcript</Link>
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </main>
   );
