@@ -36,17 +36,42 @@ export default function AssignmentsPage() {
       try {
         const isTeacher = userData.role === 'teacher';
         
-        const assignmentsEndpoint = isTeacher 
-          ? `${API_URL}/assignments/teaching?user_email=${userData.email}`
-          : `${API_URL}/assignments/my?user_email=${userData.email}`;
-          
-        const coursesEndpoint = isTeacher
+        let finalCoursesEndpoint = isTeacher
           ? `${API_URL}/courses/teaching?user_email=${userData.email}`
           : `${API_URL}/courses/enrolled?user_email=${userData.email}`;
 
+        if (!isTeacher) {
+          // Students: Perform Initial Sync Once per User
+          const syncKey = `synced_v2_${userData.id}`;
+          const alreadySynced = localStorage.getItem(syncKey);
+
+          if (!alreadySynced) {
+            console.log("Performing initial course sync from Assignments...");
+            try {
+              const allRes = await fetch(`${API_URL}/courses/all`);
+              const allCourses = allRes.ok ? await allRes.json() : [];
+
+              await Promise.all(
+                allCourses.map(course =>
+                  fetch(`${API_URL}/courses/enroll`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ course_id: course.id, user_email: userData.email })
+                  }).catch(() => {})
+                )
+              );
+              localStorage.setItem(syncKey, 'true');
+            } catch(e) { console.error("Sync error", e); }
+          }
+        }
+
+        const assignmentsEndpoint = isTeacher 
+          ? `${API_URL}/assignments/teaching?user_email=${userData.email}`
+          : `${API_URL}/assignments/my?user_email=${userData.email}`;
+
         const [assigRes, coursesRes] = await Promise.all([
           fetch(assignmentsEndpoint),
-          fetch(coursesEndpoint)
+          fetch(finalCoursesEndpoint)
         ]);
         
         if (assigRes.ok) setAssignments(await assigRes.json());
@@ -218,59 +243,85 @@ export default function AssignmentsPage() {
               {loading ? (
                 Array.from({ length: 3 }).map((_, i) => (
                   <div key={i} className="course-card skeleton-card" style={{ animationDelay: `${i * 0.15}s` }}>
-                    <div className="skeleton-icon" style={{ height: '60px' }}></div>
-                    <div className="skeleton-line" style={{ width: '70%', height: '16px' }}></div>
-                    <div className="skeleton-line" style={{ width: '100%', height: '12px' }}></div>
-                    <div className="skeleton-line" style={{ width: '85%', height: '12px' }}></div>
-                  </div>
-                ))
-              ) : assignments.length > 0 ? (
-                assignments.map((a, idx) => (
-                  <div key={a.id} className="course-card" style={{ 
-                    animationDelay: `${idx * 0.1}s`,
-                    borderLeft: `4px solid ${isTeacher ? '#f59e0b' : '#22c55e'}`
-                  }}>
-                    <div className="course-card-body">
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                        <div style={{ fontSize: '2rem' }}>📋</div>
-                        <div className="badge" style={{ 
-                          background: isTeacher ? 'rgba(245, 158, 11, 0.1)' : 'rgba(34, 197, 94, 0.1)', 
-                          color: isTeacher ? '#f59e0b' : '#22c55e',
-                          fontSize: '0.75rem' 
-                        }}>
-                          Due: {new Date(a.due_date).toLocaleDateString()}
-                        </div>
-                      </div>
-                      
-                      <h3 className="course-card-title">{a.title}</h3>
-                      <p className="course-card-desc" style={{ marginBottom: '2rem' }}>
-                        {a.description || 'No description provided.'}
-                      </p>
-                      
-                      <div className="course-card-footer" style={{ borderTop: 'none', paddingTop: 0 }}>
-                        {!isTeacher ? (
-                          <button 
-                            onClick={() => startQuiz(a)}
-                            className="btn btn-primary" 
-                            style={{ width: '100%', background: '#22c55e', boxShadow: '0 4px 14px 0 rgba(34, 197, 94, 0.39)' }}
-                          >
-                            Start Assignment
-                          </button>
-                        ) : (
-                          <div style={{ display: 'flex', gap: '0.5rem', width: '100%' }}>
-                            <button 
-                              onClick={(e) => deleteAssignment(e, a.id)}
-                              className="course-drop-btn" 
-                              style={{ flex: 1, textAlign: 'center' }}
-                            >
-                              Delete
-                            </button>
-                          </div>
-                        )}
-                      </div>
+                    <div className="skeleton-icon" style={{ height: '100px', width: '100%', borderRadius: '0' }}></div>
+                    <div style={{ padding: '1.5rem' }}>
+                      <div className="skeleton-line" style={{ width: '70%', height: '16px', marginBottom: '12px' }}></div>
+                      <div className="skeleton-line" style={{ width: '100%', height: '12px', marginBottom: '12px' }}></div>
+                      <div className="skeleton-line" style={{ width: '50%', height: '12px' }}></div>
                     </div>
                   </div>
                 ))
+              ) : assignments.length > 0 ? (
+                assignments.map((a, idx) => {
+                  const parentCourse = courses.find(c => c.id === a.course_id);
+                  const courseName = parentCourse ? parentCourse.name : 'Unknown Course';
+                  const colorIndex = parentCourse ? parentCourse.id % 6 : idx % 6;
+                  
+                  const COURSE_COLORS = [
+                    { gradient: 'linear-gradient(135deg, #6366f1, #8b5cf6)' },
+                    { gradient: 'linear-gradient(135deg, #10b981, #059669)' },
+                    { gradient: 'linear-gradient(135deg, #f59e0b, #d97706)' },
+                    { gradient: 'linear-gradient(135deg, #ec4899, #db2777)' },
+                    { gradient: 'linear-gradient(135deg, #3b82f6, #2563eb)' },
+                    { gradient: 'linear-gradient(135deg, #14b8a6, #0d9488)' },
+                  ];
+                  const color = COURSE_COLORS[colorIndex];
+                  
+                  return (
+                    <div key={a.id} className="course-card" style={{ 
+                      animationDelay: `${idx * 0.1}s`
+                    }}>
+                      <div className="course-card-banner" style={{ background: color.gradient }}>
+                        <span className="course-card-banner-icon">📋</span>
+                        <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
+                          <div className="badge" style={{ 
+                            background: 'rgba(0,0,0,0.4)', 
+                            color: '#fff',
+                            fontSize: '0.75rem',
+                            backdropFilter: 'blur(5px)'
+                          }}>
+                            Due: {new Date(a.due_date).toLocaleDateString()}
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="course-card-body">
+                        <div style={{ marginBottom: '0.5rem' }}>
+                          <span style={{ fontSize: '0.8rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '600' }}>
+                            {courseName}
+                          </span>
+                        </div>
+                        
+                        <h3 className="course-card-title">{a.title}</h3>
+                        <p className="course-card-desc" style={{ marginBottom: '2rem' }}>
+                          {a.description || 'No description provided.'}
+                        </p>
+                        
+                        <div className="course-card-footer" style={{ borderTop: 'none', paddingTop: 0 }}>
+                          {!isTeacher ? (
+                            <button 
+                              onClick={() => startQuiz(a)}
+                              className="btn btn-primary" 
+                              style={{ width: '100%', background: '#22c55e', boxShadow: '0 4px 14px 0 rgba(34, 197, 94, 0.39)' }}
+                            >
+                              Start Assignment
+                            </button>
+                          ) : (
+                            <div style={{ display: 'flex', gap: '0.5rem', width: '100%' }}>
+                              <button 
+                                onClick={(e) => deleteAssignment(e, a.id)}
+                                className="course-drop-btn" 
+                                style={{ flex: 1, textAlign: 'center' }}
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
               ) : (
                 <div className="courses-empty">
                   <div className="courses-empty-icon">☕</div>
@@ -477,6 +528,9 @@ export default function AssignmentsPage() {
           transition: all 0.3s ease;
         }
         .course-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.2); }
+        
+        .course-card-banner { height: 100px; display: flex; align-items: center; justify-content: center; position: relative; }
+        .course-card-banner-icon { font-size: 2.5rem; z-index: 1; }
         
         .course-card-body { padding: 1.5rem; display: flex; flex-direction: column; flex: 1; }
         .course-card-title { font-size: 1.05rem; font-weight: 700; color: #f8fafc; text-transform: uppercase; margin-bottom: 0.6rem; }
