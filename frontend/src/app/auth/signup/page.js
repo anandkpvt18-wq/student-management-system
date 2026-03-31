@@ -106,6 +106,20 @@ export default function SignUp() {
               />
             </div>
 
+            <div className="form-group">
+              <label htmlFor="role">Account Type</label>
+              <select
+                id="role"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                required
+                style={{ padding: '0.8rem 1rem', background: 'rgba(255, 255, 255, 0.06)', border: '1px solid var(--glass-border)', borderRadius: '10px', color: 'var(--text-main)' }}
+              >
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+              </select>
+            </div>
+
 
             <button type="submit" className="btn btn-primary auth-btn" disabled={loading}>
               {loading ? 'Creating Account...' : 'Create Account'}
