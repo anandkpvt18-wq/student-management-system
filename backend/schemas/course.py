@@ -39,3 +39,6 @@ class UserDashboardData(BaseModel):
 class EnrollRequest(BaseModel):
     course_id: int
     user_email: str
+
+class CourseCreateRequest(CourseBase):
+    user_email: str

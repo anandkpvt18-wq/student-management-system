@@ -12,6 +12,25 @@ router = APIRouter()
 def get_all_courses(db: Session = Depends(get_db)):
     return db.query(Course).all()
 
+from schemas.course import CourseCreateRequest
+@router.post("/", response_model=CourseResponse)
+def create_course(req: CourseCreateRequest, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email.ilike(req.user_email)).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    if user.role != "teacher":
+        raise HTTPException(status_code=403, detail="Only teachers can create courses")
+        
+    new_course = Course(
+        name=req.name,
+        description=req.description,
+        teacher_id=user.id
+    )
+    db.add(new_course)
+    db.commit()
+    db.refresh(new_course)
+    return new_course
+
 @router.post("/enroll", response_model=EnrollmentResponse)
 def enroll_in_course(req: EnrollRequest, db: Session = Depends(get_db)):
     user = db.query(User).filter(User.email.ilike(req.user_email)).first()
