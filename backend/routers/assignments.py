@@ -65,3 +65,15 @@ def get_user_grades(user_email: str, db: Session = Depends(get_db)):
             "grade": s.grade
         })
     return results
+
+@router.delete("/{assignment_id}")
+def delete_assignment(assignment_id: int, db: Session = Depends(get_db)):
+    assignment = db.query(Assignment).filter(Assignment.id == assignment_id).first()
+    if not assignment:
+        raise HTTPException(status_code=404, detail="Assignment not found")
+    
+    # Simple cascade or manual delete for demo
+    db.query(Submission).filter(Submission.assignment_id == assignment_id).delete()
+    db.delete(assignment)
+    db.commit()
+    return {"message": "Assignment deleted successfully"}

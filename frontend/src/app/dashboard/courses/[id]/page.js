@@ -90,10 +90,33 @@ export default function CourseDetail({ params: paramsPromise }) {
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem' }}>
+        <div style={{ marginTop: '2rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
           <Link href="/dashboard/assignments" className="btn btn-primary">
             View Related Assignments
           </Link>
+          <button 
+            onClick={async () => {
+              if (confirm(`Are you sure you want to drop ${course.name}?`)) {
+                try {
+                  const stored = JSON.parse(localStorage.getItem('user'));
+                  const res = await fetch(`${API_URL}/courses/unenroll/${params.id}?user_email=${stored.email}`, {
+                    method: 'DELETE'
+                  });
+                  if (res.ok) {
+                    router.push('/dashboard/courses');
+                  } else {
+                    alert('Failed to drop course.');
+                  }
+                } catch (err) {
+                  console.error('Error dropping course', err);
+                }
+              }
+            }}
+            className="btn btn-secondary"
+            style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderColor: 'rgba(239, 68, 68, 0.3)', boxShadow: 'none' }}
+          >
+            Drop Course
+          </button>
         </div>
       </div>
     </main>
