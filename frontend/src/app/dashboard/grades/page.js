@@ -69,12 +69,13 @@ export default function GradesPage() {
                   <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Course</th>
                   <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase' }}>Date</th>
                   <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', textAlign: 'right' }}>Grade</th>
+                  <th style={{ padding: '1.5rem', fontWeight: '600', color: 'var(--text-muted)', fontSize: '0.85rem', textTransform: 'uppercase', textAlign: 'right' }}>Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {loading ? (
                   <tr>
-                    <td colSpan="4" style={{ padding: '4rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+                    <td colSpan="5" style={{ padding: '4rem', textAlign: 'center', color: 'var(--text-muted)' }}>
                       <div className="loading-spinner" style={{ margin: '0 auto 1rem' }}></div>
                       Fetching your academic records...
                     </td>
@@ -106,11 +107,33 @@ export default function GradesPage() {
                           {g.grade}
                         </span>
                       </td>
+                      <td style={{ padding: '1.2rem 1.5rem', textAlign: 'right' }}>
+                        <button 
+                          onClick={async () => {
+                            if (confirm('Delete this grade record?')) {
+                              try {
+                                const res = await fetch(`${API_URL}/assignments/grades/${g.id}`, { method: 'DELETE' });
+                                if (res.ok) {
+                                  setGrades(grades.filter(item => item.id !== g.id));
+                                } else {
+                                  alert('Failed to delete grade.');
+                                }
+                              } catch (err) {
+                                console.error('Error deleting grade', err);
+                              }
+                            }
+                          }}
+                          className="btn btn-secondary btn-sm"
+                          style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderColor: 'rgba(239, 68, 68, 0.3)', boxShadow: 'none', padding: '0.3rem 0.6rem', fontSize: '0.8rem' }}
+                        >
+                          Drop
+                        </button>
+                      </td>
                     </tr>
                   ))
                 ) : (
                   <tr>
-                    <td colSpan="4" style={{ padding: '5rem', textAlign: 'center' }}>
+                    <td colSpan="5" style={{ padding: '5rem', textAlign: 'center' }}>
                       <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🎓</div>
                       <p className="auth-subtitle">No graded submissions found. Keep up the good work!</p>
                     </td>

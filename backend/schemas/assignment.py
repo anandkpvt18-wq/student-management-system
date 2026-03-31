@@ -35,6 +35,7 @@ class SubmissionResponse(SubmissionBase):
     class Config:
         from_attributes = True
 class GradeResponse(BaseModel):
+    id: int
     assignment_title: str
     course_name: str
     submitted_at: datetime

@@ -59,12 +59,23 @@ def get_user_grades(user_email: str, db: Session = Depends(get_db)):
     results = []
     for s in submissions:
         results.append({
+            "id": s.id,
             "assignment_title": s.assignment.title,
             "course_name": s.assignment.course.name,
             "submitted_at": s.submitted_at,
             "grade": s.grade
         })
     return results
+
+@router.delete("/grades/{submission_id}")
+def delete_grade(submission_id: int, db: Session = Depends(get_db)):
+    submission = db.query(Submission).filter(Submission.id == submission_id).first()
+    if not submission:
+        raise HTTPException(status_code=404, detail="Submission not found")
+    
+    db.delete(submission)
+    db.commit()
+    return {"message": "Grade deleted successfully"}
 
 @router.delete("/{assignment_id}")
 def delete_assignment(assignment_id: int, db: Session = Depends(get_db)):
