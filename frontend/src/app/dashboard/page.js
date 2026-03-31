@@ -110,7 +110,7 @@ export default function Dashboard() {
             <Link href="/dashboard/courses" className="action-btn" style={{ textDecoration: 'none' }}>📚 My Courses</Link>
             <Link href="/dashboard/assignments" className="action-btn" style={{ textDecoration: 'none' }}>📋 Assignments</Link>
             <Link href="/dashboard/grades" className="action-btn" style={{ textDecoration: 'none' }}>📈 View Grades</Link>
-            <button className="action-btn">📜 Transcript</button>
+            <Link href="/dashboard/transcript" className="action-btn" style={{ textDecoration: 'none' }}>📜 Transcript</Link>
           </div>
         </div>
       </div>
