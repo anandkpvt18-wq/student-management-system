@@ -31,10 +31,8 @@ def get_teaching_assignments(user_email: str, db: Session = Depends(get_db)):
     if user.role != "teacher":
         raise HTTPException(status_code=403, detail="Not authorized - Only teachers can view this")
     
-    courses = db.query(models.course.Course).filter(models.course.Course.teacher_id == user.id).all()
-    course_ids = [c.id for c in courses]
-    
-    assignments = db.query(Assignment).filter(Assignment.course_id.in_(course_ids)).all()
+    # Allow teachers to see ALL assignments (acting as global admins)
+    assignments = db.query(Assignment).all()
     return assignments
 
 @router.post("/", response_model=AssignmentResponse)
@@ -45,9 +43,9 @@ def create_assignment(req: schemas.assignment.AssignmentCreateRequest, db: Sessi
     if user.role != "teacher":
         raise HTTPException(status_code=403, detail="Only teachers can create assignments")
         
-    course = db.query(models.course.Course).filter(models.course.Course.id == req.course_id, models.course.Course.teacher_id == user.id).first()
+    course = db.query(models.course.Course).filter(models.course.Course.id == req.course_id).first()
     if not course:
-        raise HTTPException(status_code=404, detail="Course not found or not owned by you")
+        raise HTTPException(status_code=404, detail="Course not found")
         
     default_questions = [
         {
@@ -140,10 +138,6 @@ def delete_assignment(assignment_id: int, user_email: str, db: Session = Depends
     if not assignment:
         raise HTTPException(status_code=404, detail="Assignment not found")
         
-    course = db.query(models.course.Course).filter(models.course.Course.id == assignment.course_id).first()
-    if not course or course.teacher_id != user.id:
-        raise HTTPException(status_code=403, detail="Not authorized to delete this assignment")
-    
     # Simple cascade or manual delete for demo
     db.query(Submission).filter(Submission.assignment_id == assignment_id).delete()
     db.delete(assignment)

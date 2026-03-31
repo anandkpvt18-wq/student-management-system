@@ -89,7 +89,8 @@ def get_teaching_courses(user_email: str, db: Session = Depends(get_db)):
     if user.role != "teacher":
         raise HTTPException(status_code=403, detail="Not authorized - Only teachers can access this")
     
-    return db.query(Course).filter(Course.teacher_id == user.id).all()
+    # Allow teachers to see ALL courses
+    return db.query(Course).all()
 
 @router.delete("/unenroll/{course_id}")
 def unenroll_course(course_id: int, user_email: str, db: Session = Depends(get_db)):
@@ -118,9 +119,10 @@ def delete_course(course_id: int, user_email: str, db: Session = Depends(get_db)
     if user.role != "teacher":
         raise HTTPException(status_code=403, detail="Only teachers can delete courses")
     
-    course = db.query(Course).filter(Course.id == course_id, Course.teacher_id == user.id).first()
+    # Allow teachers to delete ANY course
+    course = db.query(Course).filter(Course.id == course_id).first()
     if not course:
-        raise HTTPException(status_code=404, detail="Course not found or not owned by you")
+        raise HTTPException(status_code=404, detail="Course not found")
     
     # Delete related enrollments first or rely on cascade (if configured)
     db.query(Enrollment).filter(Enrollment.course_id == course.id).delete()
