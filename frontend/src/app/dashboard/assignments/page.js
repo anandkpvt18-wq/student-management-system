@@ -199,15 +199,17 @@ export default function MyAssignments() {
                       padding: '2rem'
                     }}>
                       <div className="dash-card-icon">📋</div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
-                        <h3 style={{ textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.9rem' }}>{a.title}</h3>
+                      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.8rem', marginBottom: '1rem' }}>
+                        <h3 style={{ textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.9rem', margin: 0, flex: '1 1 auto' }}>{a.title}</h3>
                         <div className="badge" style={{ 
                           margin: 0, 
                           padding: '0.2rem 0.6rem', 
                           fontSize: '0.75rem', 
                           background: 'rgba(249, 115, 22, 0.1)', 
                           borderColor: 'rgba(249, 115, 22, 0.3)', 
-                          color: '#fb923c' 
+                          color: '#fb923c',
+                          flexShrink: 0,
+                          whiteSpace: 'nowrap'
                         }}>
                           Due: {new Date(a.due_date).toLocaleDateString()}
                         </div>
