@@ -213,11 +213,11 @@ export default function MyAssignments() {
                         </div>
                       </div>
                       <p className="dash-card-meta" style={{ flex: 1, marginBottom: '2rem', fontSize: '0.95rem' }}>{a.description}</p>
-                      <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: '1.5rem' }}>
                         <button 
                           onClick={() => startQuiz(a)}
                           className="btn btn-primary" 
-                          style={{ flex: 2, padding: '1rem', fontSize: '1rem', fontWeight: '700' }}
+                          style={{ width: '100%', padding: '1rem', fontSize: '1rem', fontWeight: '700' }}
                         >
                           Start Assignment
                         </button>
@@ -238,7 +238,7 @@ export default function MyAssignments() {
                             }
                           }}
                           className="btn btn-secondary" 
-                          style={{ flex: 1, padding: '1rem', fontSize: '0.9rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderColor: 'rgba(239, 68, 68, 0.3)', boxShadow: 'none' }}
+                          style={{ width: '100%', padding: '0.8rem', fontSize: '0.9rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', borderColor: 'rgba(239, 68, 68, 0.3)', boxShadow: 'none' }}
                         >
                           Delete
                         </button>
