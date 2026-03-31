@@ -11,6 +11,10 @@ class AssignmentBase(BaseModel):
 class AssignmentCreate(AssignmentBase):
     pass
 
+class AssignmentCreateRequest(AssignmentBase):
+    user_email: str
+
+
 class AssignmentResponse(AssignmentBase):
     id: int
     questions: Optional[List[dict]] = None
