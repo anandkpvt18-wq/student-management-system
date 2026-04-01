@@ -4,7 +4,7 @@ from database import get_db
 from models.user import User
 from models.course import Enrollment
 from models.assignment import Assignment, Submission
-from schemas.assignment import AssignmentResponse, SubmissionResponse, SubmissionCreate, GradeResponse
+from schemas.assignment import AssignmentResponse, SubmissionResponse, SubmissionCreate, GradeResponse, GradeSubmissionRequest, SubmissionOverviewResponse
 import schemas.assignment
 import models.course
 from typing import List
@@ -144,3 +144,35 @@ def delete_assignment(assignment_id: int, user_email: str, db: Session = Depends
     db.delete(assignment)
     db.commit()
     return {"message": "Assignment deleted successfully"}
+@router.get("/all-submissions", response_model=List[SubmissionOverviewResponse])
+def get_all_submissions(user_email: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email.ilike(user_email)).first()
+    if not user or user.role != "teacher":
+        raise HTTPException(status_code=403, detail="Only teachers can access grading portal")
+        
+    submissions = db.query(Submission).all()
+    results = []
+    for s in submissions:
+        results.append({
+            "id": s.id,
+            "assignment_title": s.assignment.title,
+            "student_name": s.user.full_name,
+            "student_email": s.user.email,
+            "submitted_at": s.submitted_at,
+            "content": s.content,
+            "grade": s.grade
+        })
+    # Sort by date (newest first) and then by graded status (pending first)
+    results.sort(key=lambda x: (x["grade"] is not None, x["submitted_at"]), reverse=True)
+    return results
+
+@router.put("/submissions/{submission_id}/grade")
+def grade_submission(submission_id: int, req: GradeSubmissionRequest, db: Session = Depends(get_db)):
+    submission = db.query(Submission).filter(Submission.id == submission_id).first()
+    if not submission:
+        raise HTTPException(status_code=404, detail="Submission not found")
+        
+    submission.grade = req.grade
+    db.commit()
+    db.refresh(submission)
+    return {"message": "Grade updated successfully", "grade": submission.grade}

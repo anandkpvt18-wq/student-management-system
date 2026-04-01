@@ -48,3 +48,17 @@ class GradeResponse(BaseModel):
 
     class Config:
         from_attributes = True
+class GradeSubmissionRequest(BaseModel):
+    grade: str
+
+class SubmissionOverviewResponse(BaseModel):
+    id: int
+    assignment_title: str
+    student_name: str
+    student_email: str
+    submitted_at: datetime
+    content: str
+    grade: Optional[str] = None
+
+    class Config:
+        from_attributes = True
