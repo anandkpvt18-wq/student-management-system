@@ -42,9 +42,10 @@ export default function SignIn() {
   }
 
   return (
-    <main>
-      <div className="auth-container">
-        <Link href="/" className="back-link">&larr; Back to Home</Link>
+    <div className="home-wrapper">
+      <main className="home-main" style={{ justifyContent: 'center' }}>
+        <div className="auth-container">
+          <Link href="/" className="back-link" style={{ color: '#f8fafc' }}>&larr; Back to Home</Link>
         <div className="auth-card">
           <div className="auth-header">
             <h1 className="auth-title">Welcome Back</h1>
@@ -97,5 +98,6 @@ export default function SignIn() {
         </div>
       </div>
     </main>
+    </div>
   );
 }
