@@ -22,10 +22,7 @@ CREATE TABLE IF NOT EXISTS users (
 """)
 
 # Insert sample users (skip if email already exists)
-users = [
-    ("student@school.com", hash_password("student123"), "John Student", "student"),
-    ("teacher@school.com", hash_password("teacher123"), "Jane Teacher", "teacher"),
-]
+users = []
 
 for email, pw_hash, name, role in users:
     cur.execute(
