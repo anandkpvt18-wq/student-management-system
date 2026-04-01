@@ -70,3 +70,22 @@ def get_dashboard_overview(user_email: str, db: Session = Depends(get_db)):
         "recent_courses": courses[:3], # Show top 3
         "upcoming_assignments": assignments[:3] # Show top 3
     }
+@router.get("/students", response_model=List[dict])
+def get_student_roster(user_email: str, db: Session = Depends(get_db)):
+    user = db.query(User).filter(User.email.ilike(user_email)).first()
+    if not user or user.role != "teacher":
+        raise HTTPException(status_code=403, detail="Only teachers can access student roster")
+        
+    students = db.query(User).filter(User.role == "student").all()
+    results = []
+    for s in students:
+        # Get enrollment count for each student
+        enrollment_count = db.query(Enrollment).filter(Enrollment.user_id == s.id).count()
+        results.append({
+            "id": s.id,
+            "full_name": s.full_name,
+            "email": s.email,
+            "created_at": s.created_at,
+            "enrollment_count": enrollment_count
+        })
+    return results
