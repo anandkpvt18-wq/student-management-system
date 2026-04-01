@@ -159,11 +159,19 @@ export default function AssignmentsPage() {
     if (!confirm('Are you sure you want to finalize and submit your answers?')) return;
     
     setIsSubmitting(true);
-    let correct = 0;
     const total = quizAssignment.questions?.length || 0;
+    let correct = 0;
     quizAssignment.questions.forEach((q, idx) => {
       if (answers[idx] === q.answer) correct++;
     });
+
+    const percentage = total > 0 ? Math.round((correct / total) * 100) : 0;
+    let grade = 'F';
+    if (percentage >= 90) grade = 'A+';
+    else if (percentage >= 80) grade = 'A';
+    else if (percentage >= 70) grade = 'B+';
+    else if (percentage >= 60) grade = 'B';
+    else if (percentage >= 50) grade = 'C';
 
     const score = `${correct}/${total}`;
     
@@ -174,12 +182,13 @@ export default function AssignmentsPage() {
         body: JSON.stringify({
           assignment_id: quizAssignment.id,
           user_email: user.email,
-          content: `Interactive Quiz Score: ${score}`
+          content: `Interactive Quiz Score: ${score}`,
+          grade: grade
         })
       });
 
       if (res.ok) {
-        setQuizResult({ score, total, correct });
+        setQuizResult({ score, total, correct, grade });
       } else {
         alert('Failed to save quiz result. Please try again.');
       }
@@ -468,21 +477,40 @@ export default function AssignmentsPage() {
                     padding: '3rem', 
                     borderRadius: '24px', 
                     marginBottom: '3rem',
-                    border: '1px solid rgba(255,255,255,0.1)'
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '1rem'
                   }}>
-                    <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Your Score</p>
-                    <p style={{ fontSize: '4.5rem', fontWeight: '900', color: '#22c55e', textShadow: '0 0 20px rgba(34, 197, 94, 0.3)' }}>{quizResult.score}</p>
+                    <div>
+                      <p style={{ color: '#94a3b8', fontSize: '0.9rem', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Your Score</p>
+                      <p style={{ fontSize: '4.5rem', fontWeight: '900', color: '#22c55e', textShadow: '0 0 20px rgba(34, 197, 94, 0.3)' }}>{quizResult.score}</p>
+                    </div>
+                    
                     <div style={{ 
-                      marginTop: '1.5rem', 
+                      padding: '0.8rem 2rem',
+                      background: 'rgba(139, 92, 246, 0.15)',
+                      borderRadius: '12px',
+                      border: '1px solid rgba(139, 92, 246, 0.3)',
+                      color: '#a78bfa',
+                      textAlign: 'center'
+                    }}>
+                      <p style={{ fontSize: '0.8rem', textTransform: 'uppercase', marginBottom: '0.2rem' }}>Final Grade</p>
+                      <p style={{ fontSize: '2.5rem', fontWeight: '900' }}>{quizResult.grade}</p>
+                    </div>
+
+                    <div style={{ 
+                      marginTop: '1rem', 
                       display: 'inline-block',
                       padding: '0.5rem 1.5rem',
-                      background: quizResult.correct / quizResult.total >= 0.7 ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+                      background: quizResult.correct / quizResult.total >= 0.5 ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)',
                       borderRadius: '999px',
-                      color: quizResult.correct / quizResult.total >= 0.7 ? '#4ade80' : '#f87171',
+                      color: quizResult.correct / quizResult.total >= 0.5 ? '#4ade80' : '#f87171',
                       fontWeight: '700',
                       border: '1px solid currentColor'
                     }}>
-                      {quizResult.correct / quizResult.total >= 0.7 ? "PASSED" : "REVIEW REQUIRED"}
+                      {quizResult.correct / quizResult.total >= 0.5 ? "PASSED" : "REVIEW REQUIRED"}
                     </div>
                   </div>
 
@@ -492,15 +520,15 @@ export default function AssignmentsPage() {
                       className="btn btn-primary" 
                       style={{ flex: 1, padding: '1rem', borderRadius: '14px', background: '#3b82f6' }}
                     >
-                      &#x21ba; Retake Assignment
+                      &#x21ba; Retake Quiz
                     </button>
-                    <button 
-                      onClick={closeQuiz} 
+                    <Link 
+                      href="/dashboard/grades" 
                       className="btn btn-outline" 
-                      style={{ flex: 1, padding: '1rem', borderRadius: '14px' }}
+                      style={{ flex: 1, padding: '1rem', borderRadius: '14px', textAlign: 'center', textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                     >
-                      Back to Dashboard
-                    </button>
+                      View My Grades &rarr;
+                    </Link>
                   </div>
                 </div>
               )}

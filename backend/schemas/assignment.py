@@ -29,6 +29,7 @@ class SubmissionBase(BaseModel):
 
 class SubmissionCreate(SubmissionBase):
     user_email: str
+    grade: Optional[str] = None
 
 class SubmissionResponse(SubmissionBase):
     id: int

@@ -87,7 +87,8 @@ def submit_assignment(submission: SubmissionCreate, db: Session = Depends(get_db
     new_submission = Submission(
         assignment_id=submission.assignment_id,
         user_id=user.id,
-        content=submission.content
+        content=submission.content,
+        grade=submission.grade
     )
     db.add(new_submission)
     db.commit()
