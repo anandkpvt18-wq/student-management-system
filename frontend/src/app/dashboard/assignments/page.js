@@ -121,7 +121,14 @@ export default function AssignmentsPage() {
   };
 
   const startQuiz = (assignment) => {
-    setQuizAssignment(assignment);
+    let assignmentToStart = { ...assignment };
+    if (!assignmentToStart.questions || assignmentToStart.questions.length === 0) {
+      assignmentToStart.questions = [
+         { question: `What is the most important concept in ${assignment.title}?`, options: ["The core fundamentals", "Random trivia", "Syntax rules", "Nothing"], answer: 0 },
+         { question: "How do you apply this in a real-world project?", options: ["Read stackoverflow", "Build a small prototype", "Memorize it", "Ignore it"], answer: 1 }
+      ];
+    }
+    setQuizAssignment(assignmentToStart);
     setCurrentQuestionIndex(0);
     setAnswers({});
     setQuizResult(null);
@@ -131,14 +138,25 @@ export default function AssignmentsPage() {
     setAnswers({ ...answers, [currentQuestionIndex]: optionIndex });
   };
 
+  const prevQuestion = () => {
+    if (currentQuestionIndex > 0) setCurrentQuestionIndex(currentQuestionIndex - 1);
+  };
+
   const nextQuestion = () => {
     if (currentQuestionIndex < (quizAssignment.questions?.length || 0) - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     }
   };
 
+  const retakeQuiz = () => {
+    setCurrentQuestionIndex(0);
+    setAnswers({});
+    setQuizResult(null);
+  };
+
   const submitQuiz = async () => {
     if (!user || !quizAssignment || isSubmitting) return;
+    if (!confirm('Are you sure you want to finalize and submit your answers?')) return;
     
     setIsSubmitting(true);
     let correct = 0;
@@ -406,13 +424,22 @@ export default function AssignmentsPage() {
                     ))}
                   </div>
 
-                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', gap: '1rem' }}>
+                    <button 
+                      disabled={currentQuestionIndex === 0}
+                      onClick={prevQuestion}
+                      className="btn btn-secondary"
+                      style={{ padding: '1rem 2rem', background: '#475569', border: 'none', opacity: currentQuestionIndex === 0 ? 0.3 : 1, cursor: currentQuestionIndex === 0 ? 'not-allowed' : 'pointer' }}
+                    >
+                      &larr; Previous
+                    </button>
+                    
                     {currentQuestionIndex < (quizAssignment.questions?.length || 0) - 1 ? (
                       <button 
                         disabled={answers[currentQuestionIndex] === undefined}
                         onClick={nextQuestion}
                         className="btn btn-primary"
-                        style={{ padding: '1rem 3rem', background: '#3b82f6' }}
+                        style={{ padding: '1rem 3rem', background: '#3b82f6', opacity: answers[currentQuestionIndex] === undefined ? 0.5 : 1, cursor: answers[currentQuestionIndex] === undefined ? 'not-allowed' : 'pointer' }}
                       >
                         Next Question &rarr;
                       </button>
@@ -421,7 +448,7 @@ export default function AssignmentsPage() {
                         disabled={answers[currentQuestionIndex] === undefined || isSubmitting}
                         onClick={submitQuiz}
                         className="btn btn-primary"
-                        style={{ width: '100%', background: '#22c55e' }}
+                        style={{ padding: '1rem 3rem', background: '#22c55e', opacity: answers[currentQuestionIndex] === undefined ? 0.5 : 1, cursor: answers[currentQuestionIndex] === undefined ? 'not-allowed' : 'pointer' }}
                       >
                         {isSubmitting ? 'Submitting...' : 'Finish & Finalize'}
                       </button>
@@ -459,13 +486,22 @@ export default function AssignmentsPage() {
                     </div>
                   </div>
 
-                  <button 
-                    onClick={closeQuiz} 
-                    className="btn btn-outline" 
-                    style={{ width: '100%', padding: '1rem', borderRadius: '14px' }}
-                  >
-                    Back to Assignments Tracker
-                  </button>
+                  <div style={{ display: 'flex', gap: '1rem' }}>
+                    <button 
+                      onClick={retakeQuiz} 
+                      className="btn btn-primary" 
+                      style={{ flex: 1, padding: '1rem', borderRadius: '14px', background: '#3b82f6' }}
+                    >
+                      &#x21ba; Retake Assignment
+                    </button>
+                    <button 
+                      onClick={closeQuiz} 
+                      className="btn btn-outline" 
+                      style={{ flex: 1, padding: '1rem', borderRadius: '14px' }}
+                    >
+                      Back to Dashboard
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
