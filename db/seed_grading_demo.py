@@ -114,9 +114,17 @@ def seed_grading_demo():
                 grade=s_info["grade"],
                 submitted_at=datetime.utcnow() - timedelta(hours=10)
             )
+            db.id = sub.id # Just for clarity
             db.add(sub)
+            
+            # Enroll them too
+            enrollment = db.query(Enrollment).filter(Enrollment.user_id == s_info["student"].id, Enrollment.course_id == course.id).first()
+            if not enrollment:
+                enrollment = Enrollment(user_id=s_info["student"].id, course_id=course.id)
+                db.add(enrollment)
         
         db.commit()
+
         print("Successfully seeded grading demo data!")
 
     except Exception as e:

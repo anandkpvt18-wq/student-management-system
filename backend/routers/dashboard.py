@@ -89,3 +89,46 @@ def get_student_roster(user_email: str, db: Session = Depends(get_db)):
             "enrollment_count": enrollment_count
         })
     return results
+
+@router.get("/students/{student_id}/details")
+def get_student_details(student_id: int, user_email: str, db: Session = Depends(get_db)):
+    # Verify the requester is a teacher
+    user = db.query(User).filter(User.email.ilike(user_email)).first()
+    if not user or user.role != "teacher":
+        raise HTTPException(status_code=403, detail="Only teachers can access student details")
+        
+    student = db.query(User).filter(User.id == student_id, User.role == "student").first()
+    if not student:
+        raise HTTPException(status_code=404, detail="Student not found")
+        
+    # Fetch enrollment data through course relationship
+    enrollments = db.query(Enrollment).filter(Enrollment.user_id == student.id).all()
+    courses = []
+    for e in enrollments:
+        courses.append({
+            "id": e.course.id,
+            "name": e.course.name,
+            "description": e.course.description
+        })
+        
+    # Fetch submissions/grades
+    submissions = db.query(Submission).filter(Submission.user_id == student.id).all()
+    grades = []
+    for s in submissions:
+        grades.append({
+            "id": s.id,
+            "assignment_title": s.assignment.title,
+            "course_name": s.assignment.course.name,
+            "grade": s.grade,
+            "submitted_at": s.submitted_at
+        })
+        
+    return {
+        "id": student.id,
+        "full_name": student.full_name,
+        "email": student.email,
+        "created_at": student.created_at,
+        "courses": courses,
+        "grades": grades
+    }
+
